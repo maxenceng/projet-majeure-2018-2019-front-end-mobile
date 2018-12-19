@@ -1,14 +1,13 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import IndexScreen from './pages/index';
-import OtherScreen from './pages/other';
+import Home from './pages/Home';
+import Other from './pages/Other';
 
 const Navigator = createStackNavigator({
-  Home: { screen: IndexScreen },
-  Other: { screen: OtherScreen },
+  Home: { screen: Home },
+  Other: { screen: Other },
 }, {
   initialRouteName: 'Home',
-  }
-);
+});
 
 export default createAppContainer(Navigator);
