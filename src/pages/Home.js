@@ -24,6 +24,10 @@ export default class Home extends React.Component {
             title="Go to other page"
             onPress={() => navigate('Other')}
           />
+          <Button
+            title="Go to Connexion page"
+            onPress={() => navigate('SignUp')}
+          />
         </View>
       </Layout>
     );
