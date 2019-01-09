@@ -4,8 +4,8 @@ import { View, Button, TextInput } from 'react-native';
 import navigationOptions from '../utils/navigationOptions';
 import Layout from './Layout';
 
-export default class SignUp extends React.Component {
-  static navigationOptions = navigationOptions('SignUp');
+export default class Events extends React.Component {
+  static navigationOptions = navigationOptions('Events');
 
   render() {
     const { navigation: { navigate } } = this.props;
@@ -15,9 +15,12 @@ export default class SignUp extends React.Component {
           <TextInput
             placeholder="user"
           />
+          <TextInput
+            placeholder="password"
+          />
           <Button
-            title="Go to home page"
-            onPress={() => navigate('Home')}
+            title="SignIn"
+            onPress={() => navigate('Events')}
           />
         </View>
       </Layout>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet} from 'react-native';
 
 import navigationOptions from '../utils/navigationOptions';
-import MessageExample from '../containers/MessageExample';
-import ButtonExample from '../containers/ButtonExample';
+// import MessageExample from '../containers/MessageExample';
+// import ButtonExample from '../containers/ButtonExample';
 import Layout from './Layout';
 
 export default class Home extends React.Component {
@@ -13,19 +13,14 @@ export default class Home extends React.Component {
     const { navigation: { navigate } } = this.props;
     return (
       <Layout>
-        <View style={{ width: '70%' }}>
-          <Text>HELLO</Text>
-          <ButtonExample
-            text="Redux"
-            message="Redux OK!"
-          />
-          <MessageExample />
+        <View>
+          <Text style ={styles.title}>WeMe</Text>
           <Button
-            title="Go to other page"
-            onPress={() => navigate('Other')}
+            title="Sign In"
+            onPress={() => navigate('SignIn')}
           />
           <Button
-            title="Go to Connexion page"
+            title="Sign Up"
             onPress={() => navigate('SignUp')}
           />
         </View>
@@ -33,3 +28,22 @@ export default class Home extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    color: '#34495e',
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#34495e',
+  },
+});
