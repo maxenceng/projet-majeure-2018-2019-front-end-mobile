@@ -1,18 +1,21 @@
 import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import {
+  View, Button, StyleSheet, Text,
+}
+  from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import navigationOptions from '../utils/navigationOptions';
-import Layout from './Layout';
+// import Layout from './Layout';
 
 // const Form = t.form.Form;
 
 const { Form } = t.form;
 
 const User = t.struct({
-  email: t.String,
-  username: t.String,
-  password: t.String,
-  terms: t.Boolean,
+  Firstname: t.String,
+  Lastname: t.String,
+  Username: t.String,
+  Tags: t.String,
 });
 
 const formStyles = {
@@ -20,6 +23,7 @@ const formStyles = {
   formGroup: {
     normal: {
       marginBottom: 10,
+      width: 250,
     },
   },
   controlLabel: {
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     marginTop: 50,
-    padding: 20,
+    padding: 60,
     backgroundColor: '#ffffff',
   },
   paragraph: {
@@ -68,10 +72,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#34495e',
   },
+  title: {
+    marginTop: 30,
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#34495e',
+  },
 });
 
-export default class SignUp extends React.Component {
-  static navigationOptions = navigationOptions('SignUp');
+export default class Profile extends React.Component {
+  static navigationOptions = navigationOptions('Profile');
 
   handleSubmit = () => {
     const value = this.form.getValue();
@@ -81,7 +92,10 @@ export default class SignUp extends React.Component {
   render() {
     const { navigation: { navigate } } = this.props;
     return (
-      <Layout>
+      <View>
+        <View>
+          <Text style={styles.title}>WeMe</Text>
+        </View>
         <View style={styles.container}>
           <Form
             ref={(c) => { this.form = c; }}
@@ -89,11 +103,11 @@ export default class SignUp extends React.Component {
             options={options}
           />
           <Button
-            title="Sign Up!"
+            title="Save"
             onPress={() => navigate('Profile')}
           />
         </View>
-      </Layout>
+      </View>
     );
   }
 }
