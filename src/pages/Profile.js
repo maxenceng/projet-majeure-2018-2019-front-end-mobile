@@ -1,15 +1,20 @@
 import React from 'react';
 import {
-  View, Button, StyleSheet, Text,
+  View, Button, StyleSheet, Text, Image, ScrollView,
 }
   from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import navigationOptions from '../utils/navigationOptions';
+import imageprofile from '../images/profile-pic.png';
 // import Layout from './Layout';
 
 // const Form = t.form.Form;
 
 const { Form } = t.form;
+
+const UserDescription = t.struct({
+  Description: t.String,
+});
 
 const User = t.struct({
   Firstname: t.String,
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     marginTop: 50,
-    padding: 60,
+    paddingLeft: 60,
     backgroundColor: '#ffffff',
   },
   paragraph: {
@@ -79,6 +84,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#34495e',
   },
+  profileimage: {
+    marginLeft: 140,
+    width: 80,
+    height: 80,
+  },
 });
 
 export default class Profile extends React.Component {
@@ -92,11 +102,20 @@ export default class Profile extends React.Component {
   render() {
     const { navigation: { navigate } } = this.props;
     return (
-      <View>
+      <ScrollView>
         <View>
           <Text style={styles.title}>WeMe</Text>
         </View>
+        <Image
+          style={styles.profileimage}
+          source={imageprofile}
+        />
         <View style={styles.container}>
+          <Form
+            ref={(c) => { this.form = c; }}
+            type={UserDescription}
+            options={options}
+          />
           <Form
             ref={(c) => { this.form = c; }}
             type={User}
@@ -104,10 +123,10 @@ export default class Profile extends React.Component {
           />
           <Button
             title="Save"
-            onPress={() => navigate('Profile')}
+            onPress={() => navigate('Events')}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

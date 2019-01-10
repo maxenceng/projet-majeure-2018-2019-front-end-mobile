@@ -9,6 +9,7 @@
     "storybook": "storybook start"
   },
   "dependencies": {
+    "@expo/vector-icons": "^9.0.0",
     "expo": "^31.0.2",
     "prop-types": "^15.6.2",
     "react": "16.5.0",
