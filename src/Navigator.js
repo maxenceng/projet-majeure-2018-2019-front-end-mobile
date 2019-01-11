@@ -5,6 +5,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Eventpage from './pages/Eventpage';
+import MenuBar from './components/MenuBar';
 
 const Navigator = createStackNavigator({
   Home: { screen: Home },
@@ -12,6 +13,7 @@ const Navigator = createStackNavigator({
   SignUp: { screen: SignUp },
   Profile: { screen: Profile },
   Eventpage: { screen: Eventpage },
+  MenuBar: { screen: MenuBar },
 }, {
   initialRouteName: 'Home',
 });

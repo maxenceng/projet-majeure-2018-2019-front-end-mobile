@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import {
+  View, Button, StyleSheet, Text,
+} from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import navigationOptions from '../utils/navigationOptions';
-// import ButtonExample from '../containers/ButtonExample';
-import Layout from './Layout';
 
-// const Form = t.form.Form;
 const { Form } = t.form;
 
 const User = t.struct({
@@ -15,14 +14,13 @@ const User = t.struct({
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
+    marginTop: 75,
+    width: 250,
     backgroundColor: '#ffffff',
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
+  title: {
+    fontSize: 30,
+    marginTop: 90,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#34495e',
@@ -33,9 +31,13 @@ export default class SignIn extends React.Component {
   static navigationOptions = navigationOptions('SignIn');
 
   render() {
-    // const { navigation: { navigate } } = this.props;
+    const { navigation: { navigate } } = this.props;
     return (
-      <Layout>
+      <View style={{
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center',
+      }}
+      >
+        <Text style={styles.title}>WeMe</Text>
         <View style={styles.container}>
           <Form
             ref={(c) => { this.form = c; }}
@@ -43,10 +45,10 @@ export default class SignIn extends React.Component {
           />
           <Button
             title="Sign In"
-            // onPress={() => navigate('Profile')}
+            onPress={() => navigate('Profile')}
           />
         </View>
-      </Layout>
+      </View>
     );
   }
 }

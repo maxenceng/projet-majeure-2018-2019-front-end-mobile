@@ -1,7 +1,7 @@
 export default title => ({
   title,
   headerStyle: {
-    backgroundColor: '#f4511e',
+    backgroundColor: '#abcdef',
   },
   headerTintColor: '#fff',
   headerTitleStyle: {

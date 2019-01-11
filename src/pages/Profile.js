@@ -28,7 +28,7 @@ const formStyles = {
   formGroup: {
     normal: {
       marginBottom: 10,
-      width: 250,
+      width: 225,
     },
   },
   controlLabel: {
@@ -65,6 +65,7 @@ const options = {
 
 const styles = StyleSheet.create({
   container: {
+    width: 250,
     justifyContent: 'center',
     marginTop: 50,
     paddingLeft: 60,
@@ -121,6 +122,8 @@ export default class Profile extends React.Component {
             type={User}
             options={options}
           />
+        </View>
+        <View style={[{ width: 100, marginLeft: 125 }]}>
           <Button
             title="Save"
             onPress={() => navigate('Eventpage')}
