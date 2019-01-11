@@ -66,19 +66,25 @@ export default class Eventpage extends React.Component {
         </View>
         <View>
           <Text style={styles.event1}>
-            All Events{"\n"}{"\n"}
+            All Events
+            <br />
+            <br />
             test
           </Text>
         </View>
         <View>
           <Text style={styles.event2}>
-            Events For me{"\n"}{"\n"}
+            Events For me
+            <br />
+            <br />
             Want something specific ?
           </Text>
         </View>
         <View>
           <Text style={styles.event3}>
-            Random Event{"\n"}{"\n"}
+            Random Event
+            <br />
+            <br />
             Feeling Adventurous
           </Text>
         </View>
