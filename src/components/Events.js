@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     color: '#34495e',
   },
 });
-export default class MenuBar extends React.Component {
+export default class Events extends React.Component {
 
   
   render(){

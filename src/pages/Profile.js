@@ -123,7 +123,7 @@ export default class Profile extends React.Component {
           />
           <Button
             title="Save"
-            onPress={() => navigate('Events')}
+            onPress={() => navigate('Eventpage')}
           />
         </View>
       </ScrollView>

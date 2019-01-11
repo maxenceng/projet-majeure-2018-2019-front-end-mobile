@@ -4,14 +4,14 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
-import Events from './pages/Events';
+import Eventpage from './pages/Eventpage';
 
 const Navigator = createStackNavigator({
   Home: { screen: Home },
   SignIn: { screen: SignIn },
   SignUp: { screen: SignUp },
   Profile: { screen: Profile },
-  Events: { screen: Events },
+  Eventpage: { screen: Eventpage },
 }, {
   initialRouteName: 'Home',
 });
