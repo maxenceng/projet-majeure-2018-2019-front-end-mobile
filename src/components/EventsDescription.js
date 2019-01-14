@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
-  View, Text, StyleSheet,
+  View, StyleSheet, Text, Image,
 }
   from 'react-native';
+import imageprofile from '../images/edsheeran.jpg';
 
 const styles = StyleSheet.create({
   Item1: {
@@ -46,37 +46,43 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black',
   },
+  eventimage: {
+    /* position: 'absolute',
+    top: -20,
+    justifyContent: 'center',
+    alignItems: 'center', */
+    width: 180,
+    height: 180,
+    marginBottom: 20,
+  },
 });
-const Events = ({
-  day, titleEvent, dayDate, description,
-}) => (
-  <View style={{
-    borderColor: 'black', borderWidth: 0.5,
-  }}
-  >
+export default function EventsDescription() {
+  return (
     <View style={{
-      flex: 1, flexDirection: 'row', paddingLeft: 25,
+      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center',
     }}
     >
-      <Text style={styles.Item1}>{day}</Text>
-      <Text style={styles.Item2}>{titleEvent}</Text>
-    </View>
-    <View
-      style={{
-        flex: 1, flexDirection: 'row', paddingLeft: 25,
+      <Image
+        style={styles.eventimage}
+        source={imageprofile}
+      />
+      <View style={{
+        position: 'relative', marginRight: 60,
       }}
-    >
-      <Text style={styles.Item3}>{dayDate}</Text>
-      <Text style={styles.Item4}>{description}</Text>
+      >
+        <Text>
+          Date
+        </Text>
+        <Text>
+          Title of event
+        </Text>
+        <Text>
+          Time
+        </Text>
+        <Text>
+          Place of event
+        </Text>
+      </View>
     </View>
-  </View>
-);
-
-Events.propTypes = {
-  day: PropTypes.string.isRequired,
-  titleEvent: PropTypes.string.isRequired,
-  dayDate: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-};
-
-export default Events;
+  );
+}

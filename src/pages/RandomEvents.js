@@ -23,7 +23,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   event1: {
+    width: 300,
     height: 70,
+    marginTop: 30,
+    marginLeft: 30,
     fontSize: 30,
     color: 'white',
     backgroundColor: 'orange',
@@ -31,7 +34,9 @@ const styles = StyleSheet.create({
     // flex: 1,
   },
   event1content: {
+    width: 300,
     height: 50,
+    marginLeft: 30,
     fontSize: 15,
     color: 'white',
     backgroundColor: 'orange',
@@ -39,7 +44,9 @@ const styles = StyleSheet.create({
     // flex: 1,
   },
   event2: {
+    width: 300,
     height: 70,
+    marginLeft: 30,
     marginTop: 20,
     fontSize: 30,
     color: 'white',
@@ -48,7 +55,9 @@ const styles = StyleSheet.create({
     // flex: 2,
   },
   event2content: {
+    width: 300,
     height: 50,
+    marginLeft: 30,
     fontSize: 15,
     color: 'white',
     backgroundColor: 'orange',
@@ -56,7 +65,9 @@ const styles = StyleSheet.create({
     // flex: 2,
   },
   event3: {
+    width: 300,
     height: 70,
+    marginLeft: 30,
     marginTop: 20,
     fontSize: 30,
     color: 'white',
@@ -65,7 +76,9 @@ const styles = StyleSheet.create({
     // flex: 3,
   },
   event3content: {
+    width: 300,
     height: 50,
+    marginLeft: 30,
     fontSize: 15,
     color: 'white',
     backgroundColor: 'orange',
@@ -88,54 +101,52 @@ export default class Eventpage extends React.Component {
       <View>
         <MenuBar
           navigate={navigate}
+          style={{
+            position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
+          }}
         />
-        <View style={{
-          position: 'absolute', top: 100, left: 25, width: 300,
-        }}
+        <TouchableHighlight
+          onPress={() => navigate('Profile')}
         >
-          <TouchableHighlight
-            onPress={() => navigate('AllEvents')}
-          >
-            <Text style={styles.event1}>
-              All Events
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('AllEvents')}
-          >
-            <Text style={styles.event1content}>
-              All the good stuff, everywhere
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('EventsForMe')}
-          >
-            <Text style={styles.event2}>
-              Events For me
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('EventsForMe')}
-          >
-            <Text style={styles.event2content}>
-              Want something specific ?
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('RandomEvents')}
-          >
-            <Text style={styles.event3}>
-              Random Event
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('RandomEvents')}
-          >
-            <Text style={styles.event3content}>
-              Feeling Adventurous
-            </Text>
-          </TouchableHighlight>
-        </View>
+          <Text style={styles.event1}>
+            All Events
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate('Profile')}
+        >
+          <Text style={styles.event1content}>
+            All the good stuff, everywhere
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate('Profile')}
+        >
+          <Text style={styles.event2}>
+            Events For me
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate('Profile')}
+        >
+          <Text style={styles.event2content}>
+            Want something specific ?
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate('Profile')}
+        >
+          <Text style={styles.event3}>
+            Random Event
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate('Profile')}
+        >
+          <Text style={styles.event3content}>
+            Feeling Adventurous
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }

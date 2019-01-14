@@ -1,10 +1,13 @@
 import React from 'react';
 import {
-  View, Text, Button, StyleSheet,
+  View, Text, StyleSheet,
 }
   from 'react-native';
 
 import navigationOptions from '../utils/navigationOptions';
+// import MessageExample from '../containers/MessageExample';
+// import ButtonExample from '../containers/ButtonExample';
+// import Layout from './Layout';
 
 
 const styles = StyleSheet.create({
@@ -47,31 +50,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Home extends React.Component {
-  static navigationOptions = navigationOptions('Home');
+export default class People extends React.Component {
+  static navigationOptions = navigationOptions('People');
 
   render() {
-    const { navigation: { navigate } } = this.props;
     return (
       <View style={{ width: 300, marginLeft: 25 }}>
         <View>
-          <Text style={styles.title}>WeMe</Text>
+          <Text style={styles.title}>PEOPLE</Text>
         </View>
         <View>
           <Text style={styles.description}>New Events, New Friends</Text>
-        </View>
-        <View style={styles.signIn}>
-          <Button
-            style={{ marginBottom: 60 }}
-            title="Sign In"
-            onPress={() => navigate('SignIn')}
-          />
-        </View>
-        <View style={styles.signUp}>
-          <Button
-            title="Sign Up"
-            onPress={() => navigate('SignUp')}
-          />
         </View>
       </View>
     );
