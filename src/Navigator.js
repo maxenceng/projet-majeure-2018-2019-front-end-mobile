@@ -7,10 +7,12 @@ import Profile from './pages/Profile';
 import Eventpage from './pages/Eventpage';
 import EventDetails from './pages/EventDetails';
 import MenuBar from './components/MenuBar';
+import Participant from './components/Participant';
 import AllEvents from './pages/AllEvents';
 import EventsForMe from './pages/EventsForMe';
 import RandomEvents from './pages/RandomEvents';
 import People from './pages/People';
+import Mail from './pages/Mail';
 
 const Navigator = createStackNavigator({
   Home: { screen: Home },
@@ -24,8 +26,10 @@ const Navigator = createStackNavigator({
   RandomEvents: { screen: RandomEvents },
   EventDetails: { screen: EventDetails },
   People: { screen: People },
+  Participant: { screen: Participant },
+  Mail: { screen: Mail },
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'EventDetails',
 });
 
 export default createAppContainer(Navigator);

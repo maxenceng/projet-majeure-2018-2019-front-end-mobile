@@ -1,16 +1,13 @@
 import React from 'react';
 import {
-  View, Text, StyleSheet,
+  View, TouchableHighlight, ScrollView,
 }
   from 'react-native';
-
 import navigationOptions from '../utils/navigationOptions';
-// import MessageExample from '../containers/MessageExample';
-// import ButtonExample from '../containers/ButtonExample';
-// import Layout from './Layout';
+import Participant from '../components/Participant';
 
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     marginTop: 50,
@@ -49,19 +46,28 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+*/
 
 export default class People extends React.Component {
   static navigationOptions = navigationOptions('People');
 
   render() {
+    const { navigation: { navigate } } = this.props;
     return (
-      <View style={{ width: 300, marginLeft: 25 }}>
-        <View>
-          <Text style={styles.title}>PEOPLE</Text>
-        </View>
-        <View>
-          <Text style={styles.description}>New Events, New Friends</Text>
-        </View>
+      <View>
+        <ScrollView
+          style={{
+            height: '100%',
+          }}
+        >
+          {new Array(13).fill(null).map(() => (
+            <TouchableHighlight
+              onPress={() => navigate('EventDetails')}
+            >
+              <Participant ab="Name" ef="Tags" />
+            </TouchableHighlight>
+          ))}
+        </ScrollView>
       </View>
     );
   }

@@ -45,7 +45,7 @@ export default class SignIn extends React.Component {
           />
           <Button
             title="Sign In"
-            onPress={() => navigate('Profile')}
+            onPress={() => navigate('Eventpage')}
           />
         </View>
       </View>
