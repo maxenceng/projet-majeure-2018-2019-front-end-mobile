@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     bottom: -70,
     justifyContent: 'center',
     alignItems: 'center', */
+    marginTop: 7,
     fontSize: 15,
     marginLeft: 15,
     fontWeight: 'bold',
@@ -25,8 +26,9 @@ const styles = StyleSheet.create({
     bottom: -40, */
     fontSize: 15,
     marginLeft: 90,
-    fontWeight: 'bold',
     color: 'black',
+    width: 200,
+    marginTop: -15,
   },
   eventimage: {
     /* position: 'absolute',
@@ -36,17 +38,17 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginTop: 5,
+    borderRadius: 30,
   },
 });
 const Participant = ({
   ab, ef, navigate,
 }) => (
   <View style={{
-    borderColor: 'black', borderWidth: 0.5,
   }}
   >
     <View style={{
-      flex: 1, flexDirection: 'row', paddingLeft: 15, height: 50,
+      flex: 1, flexDirection: 'row', paddingLeft: 15, height: 50, marginBottom: 10,
     }}
     >
       <Image

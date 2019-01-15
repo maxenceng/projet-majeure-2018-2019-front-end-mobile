@@ -29,14 +29,14 @@ export default class Mail extends React.Component {
         <View>
           <ScrollView
             style={{
-              marginTop: 30, width: 300, marginLeft: 30, height: 475, borderColor: 'black', borderWidth: 1,
+              height: '100%',
             }}
           >
             {new Array(13).fill(null).map(() => (
               <TouchableHighlight
                 onPress={() => navigate('EventDetails')}
               >
-                <Participant ab="Name" ef="Tags" />
+                <Participant ab="Name" ef="Last message" />
               </TouchableHighlight>
             ))}
           </ScrollView>
