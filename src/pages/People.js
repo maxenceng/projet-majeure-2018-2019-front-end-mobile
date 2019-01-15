@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, TouchableHighlight, ScrollView,
+  View, ScrollView,
 }
   from 'react-native';
 import navigationOptions from '../utils/navigationOptions';
@@ -53,6 +53,7 @@ export default class People extends React.Component {
 
   render() {
     const { navigation: { navigate } } = this.props;
+    // console.log(this.props.color);
     return (
       <View>
         <ScrollView
@@ -61,11 +62,7 @@ export default class People extends React.Component {
           }}
         >
           {new Array(13).fill(null).map(() => (
-            <TouchableHighlight
-              onPress={() => navigate('EventDetails')}
-            >
-              <Participant ab="Name" ef="Tags" />
-            </TouchableHighlight>
+            <Participant ab="Name" ef="Tags" navigate={navigate} />
           ))}
         </ScrollView>
       </View>

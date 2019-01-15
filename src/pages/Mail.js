@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, TouchableHighlight, ScrollView,
+  View, ScrollView,
 }
   from 'react-native';
 import navigationOptions from '../utils/navigationOptions';
@@ -33,11 +33,7 @@ export default class Mail extends React.Component {
             }}
           >
             {new Array(13).fill(null).map(() => (
-              <TouchableHighlight
-                onPress={() => navigate('EventDetails')}
-              >
-                <Participant ab="Name" ef="Last message" />
-              </TouchableHighlight>
+              <Participant ab="Name" ef="Last message" navigate={navigate} />
             ))}
           </ScrollView>
         </View>

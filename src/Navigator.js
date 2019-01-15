@@ -13,6 +13,9 @@ import EventsForMe from './pages/EventsForMe';
 import RandomEvents from './pages/RandomEvents';
 import People from './pages/People';
 import Mail from './pages/Mail';
+import Conversation from './pages/Conversation';
+import Interlocutor from './components/Interlocutor';
+import Interlocutor2 from './components/Interlocutor2';
 
 const Navigator = createStackNavigator({
   Home: { screen: Home },
@@ -28,6 +31,9 @@ const Navigator = createStackNavigator({
   People: { screen: People },
   Participant: { screen: Participant },
   Mail: { screen: Mail },
+  Conversation: { screen: Conversation },
+  Interlocutor: { screen: Interlocutor },
+  Interlocutor2: { screen: Interlocutor2 },
 }, {
   initialRouteName: 'EventDetails',
 });

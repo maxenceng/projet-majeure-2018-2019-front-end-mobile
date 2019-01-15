@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, StyleSheet, Text, TouchableHighlight, Image,
+  View, StyleSheet, Text, Image,
 }
   from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import imageprofile from '../images/edsheeran.jpg';
 
 const styles = StyleSheet.create({
@@ -16,7 +15,8 @@ const styles = StyleSheet.create({
     alignItems: 'center', */
     marginTop: 7,
     fontSize: 15,
-    marginLeft: 15,
+    position: 'absolute',
+    right: 80,
     fontWeight: 'bold',
     color: 'black',
   },
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     left: 35,
     bottom: -40, */
     fontSize: 15,
-    marginLeft: 90,
+    marginLeft: 173,
     color: 'black',
     width: 200,
     marginTop: -15,
@@ -37,16 +37,16 @@ const styles = StyleSheet.create({
     alignItems: 'center', */
     width: 60,
     height: 60,
+    position: 'absolute',
+    right: 10,
     marginTop: 5,
     borderRadius: 30,
   },
 });
-const Participant = ({
-  ab, ef, navigate,
+const Interlocutor2 = ({
+  ab, ef,
 }) => (
-  <View style={{
-  }}
-  >
+  <View>
     <View style={{
       flex: 1, flexDirection: 'row', paddingLeft: 15, height: 50, marginBottom: 10,
     }}
@@ -56,19 +56,6 @@ const Participant = ({
         source={imageprofile}
       />
       <Text style={styles.Item1}>{ab}</Text>
-      <TouchableHighlight
-        onPress={() => navigate('Conversation')}
-        style={{
-          position: 'absolute', right: 20, top: 15, bottom: 0, justifyContent: 'center', alignItems: 'center',
-        }}
-      >
-        <Ionicons
-          style={{ marginLeft: 20 }}
-          name="ios-mail"
-          size={60}
-          color="black"
-        />
-      </TouchableHighlight>
     </View>
     <View>
       <Text style={styles.Item3}>{ef}</Text>
@@ -76,10 +63,9 @@ const Participant = ({
   </View>
 );
 
-Participant.propTypes = {
+Interlocutor2.propTypes = {
   ab: PropTypes.string.isRequired,
   ef: PropTypes.string.isRequired,
-  navigate: PropTypes.func.isRequired,
 };
 
-export default Participant;
+export default Interlocutor2;
