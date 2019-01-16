@@ -35,7 +35,7 @@ const Navigator = createStackNavigator({
   Interlocutor: { screen: Interlocutor },
   Interlocutor2: { screen: Interlocutor2 },
 }, {
-  initialRouteName: 'EventDetails',
+  initialRouteName: 'Home',
 });
 
 export default createAppContainer(Navigator);

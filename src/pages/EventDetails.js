@@ -25,7 +25,9 @@ export default class EventDetails extends React.Component {
             navigate={navigate}
           />
         </View>
-        <TabNavigator1 />
+        <TabNavigator1
+          navigate={navigate}
+        />
       </View>
     );
   }

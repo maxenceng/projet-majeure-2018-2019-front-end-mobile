@@ -2,16 +2,19 @@ import React from 'react';
 import {
   View, Button, StyleSheet, Text,
 } from 'react-native';
+import { connect } from 'react-redux';
 import t from 'tcomb-form-native'; // 0.6.9
 import navigationOptions from '../utils/navigationOptions';
+import actions, { actionPropTypes } from '../actions';
 
 const { Form } = t.form;
 
 const User = t.struct({
+  name: t.String,
+  firstname: t.String,
   email: t.String,
-  username: t.String,
   password: t.String,
-  terms: t.Boolean,
+  passwordVerif: t.String,
 });
 
 const options = {
@@ -41,16 +44,38 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
   static navigationOptions = navigationOptions('SignUp');
+
+  static propTypes = {
+    actions: actionPropTypes.isRequired,
+  };
+
+  onSubmit = () => {
+    const {
+      name,
+      firstname,
+      email,
+      password,
+      passwordVerif,
+    } = this.form.getValue();
+    const { actions: { registerAction }, navigation: { navigate } } = this.props;
+    registerAction({
+      name,
+      firstname,
+      email,
+      password,
+      passwordVerif,
+    });
+    navigate('Eventpage');
+  }
 
   handleSubmit = () => {
     const value = this.form.getValue();
-    console.log('value: ', value);
+    console.log('value: ', value.name);
   }
 
   render() {
-    const { navigation: { navigate } } = this.props;
     return (
       <View style={{
         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center',
@@ -64,11 +89,23 @@ export default class SignUp extends React.Component {
             options={options}
           />
           <Button
-            title="Sign Up!"
-            onPress={() => navigate('Profile')}
+            onPress={this.onSubmit}
+            title="Sign up"
           />
         </View>
       </View>
     );
   }
 }
+
+export default connect(null, actions)(SignUp);
+
+// tu stash tu pull tu pop et tu merge
+// tu commit tu push ou bien c'est la demer
+// Tu fais le tout sur la branche dev
+// sur le trello tu marques c'que t'as fait
+
+
+// et tu supprimes eslint de mes couilles
+// et tu le dis surout pas à jacqouille
+// si tu galère t'appelle le prof maxence
