@@ -3,6 +3,7 @@ import {
   View, StyleSheet, Text, Image,
 }
   from 'react-native';
+import PropTypes from 'prop-types';
 import imageprofile from '../images/edsheeran.jpg';
 
 const styles = StyleSheet.create({
@@ -56,33 +57,42 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-export default function EventsDescription() {
-  return (
+const EventsDescription = ({
+  titleEvent, dayDate, placeofevent, description,
+}) => (
+  <View style={{
+    position: 'absolute', top: 300, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center',
+  }}
+  >
+    <Image
+      style={styles.eventimage}
+      source={imageprofile}
+    />
     <View style={{
-      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center',
+      position: 'relative', marginRight: 60,
     }}
     >
-      <Image
-        style={styles.eventimage}
-        source={imageprofile}
-      />
-      <View style={{
-        position: 'relative', marginRight: 60,
-      }}
-      >
-        <Text>
-          Date
-        </Text>
-        <Text>
-          Title of event
-        </Text>
-        <Text>
-          Time
-        </Text>
-        <Text>
-          Place of event
-        </Text>
-      </View>
+      <Text>
+        {titleEvent}
+      </Text>
+      <Text>
+        {dayDate}
+      </Text>
+      <Text>
+        {placeofevent}
+      </Text>
+      <Text>
+        {description}
+      </Text>
     </View>
-  );
-}
+  </View>
+);
+
+EventsDescription.propTypes = {
+  dayDate: PropTypes.string.isRequired,
+  titleEvent: PropTypes.string.isRequired,
+  placeofevent: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
+
+export default EventsDescription;

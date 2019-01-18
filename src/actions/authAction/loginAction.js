@@ -17,7 +17,7 @@ export default ({ email, password }) => (dispatch) => {
     .then((res) => {
       dispatch(loginSuccess(res));
       AsyncStorage.setItem('userToken', res.data.token);
-      AsyncStorage.setItem('idUser', res.data.user[0].ID_USER);
+      AsyncStorage.setItem('idUser', res.data.user.ID_USER);
     })
     .catch(err => dispatch(loginError(getErrorMessage(err))));
 };

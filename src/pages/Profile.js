@@ -1,82 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   View, Button, StyleSheet, Text, Image, ScrollView,
 }
   from 'react-native';
-import t from 'tcomb-form-native'; // 0.6.9
+import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
 import imageprofile from '../images/profile-pic.png';
-// import Layout from './Layout';
 
-// const Form = t.form.Form;
-
-const { Form } = t.form;
-
-const UserDescription = t.struct({
-  Description: t.String,
-});
-
-const User = t.struct({
-  Firstname: t.String,
-  Lastname: t.String,
-  Username: t.String,
-  Tags: t.String,
-});
-
-const formStyles = {
-  ...Form.stylesheet,
-  formGroup: {
-    normal: {
-      marginBottom: 10,
-      width: 225,
-    },
-  },
-  controlLabel: {
-    normal: {
-      color: 'blue',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600',
-    },
-    // the style applied when a validation error occours
-    error: {
-      color: 'red',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600',
-    },
-  },
-};
-
-const options = {
-  fields: {
-    email: {
-      error: 'Without an email address how are you going to reset your password when you forget it?',
-    },
-    password: {
-      error: 'Choose something you use on a dozen other sites or something you won\'t remember',
-    },
-    terms: {
-      label: 'Agree to Terms',
-    },
-  },
-  stylesheet: formStyles,
-};
 
 const styles = StyleSheet.create({
   container: {
     width: 250,
     justifyContent: 'center',
     marginTop: 50,
-    paddingLeft: 60,
-    backgroundColor: '#ffffff',
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
+    marginLeft: 50,
   },
   title: {
     marginTop: 30,
@@ -92,13 +30,43 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Profile extends React.Component {
+class Profile extends React.Component {
   static navigationOptions = navigationOptions('Profile');
 
-  handleSubmit = () => {
-    const value = this.form.getValue();
-    console.log('value: ', value);
+  static propTypes = {
+    profile: PropTypes.instanceOf(Object).isRequired,
   }
+
+
+  onChange = name => ({ target: { value } }) => this.setState({ [name]: value });
+
+  get profile() {
+    const { profile: { profile } } = this.props;
+    if (!profile) {
+      return {
+        PROFILE_AVATAR: '',
+        PROFILE_DESC: '',
+        TAG_TEXT: '',
+        USER_FIRSTNAME: 'EBER',
+        USER_NAME: '',
+      };
+    }
+    const {
+      PROFILE_AVATAR,
+      PROFILE_DESC,
+      TAG_TEXT,
+      USER_FIRSTNAME,
+      USER_NAME,
+    } = profile[0];
+    return {
+      PROFILE_AVATAR,
+      PROFILE_DESC,
+      TAG_TEXT,
+      USER_FIRSTNAME,
+      USER_NAME,
+    };
+  }
+
 
   render() {
     const { navigation: { navigate } } = this.props;
@@ -112,24 +80,26 @@ export default class Profile extends React.Component {
           source={imageprofile}
         />
         <View style={styles.container}>
-          <Form
-            ref={(c) => { this.form = c; }}
-            type={UserDescription}
-            options={options}
-          />
-          <Form
-            ref={(c) => { this.form = c; }}
-            type={User}
-            options={options}
-          />
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Descritpion :</Text>
+          <Text style={{ fontSize: 15 }}>{this.profile.PROFILE_DESC}</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 10 }}>Firstname :</Text>
+          <Text style={{ fontSize: 15 }}>{this.profile.USER_FIRSTNAME}</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 10 }}>Username :</Text>
+          <Text style={{ fontSize: 15 }}>{this.profile.USER_FIRSTNAME}</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 10 }}>Tags :</Text>
+          <Text style={{ fontSize: 15 }}>{this.profile.TAG_TEXT}</Text>
         </View>
-        <View style={[{ width: 100, marginLeft: 125 }]}>
+        <View style={[{ width: 100, marginLeft: 125, marginTop: 50 }]}>
           <Button
-            title="Save"
-            onPress={() => navigate('Eventpage')}
+            title="Edit"
+            onPress={() => navigate('CreateProfile')}
           />
         </View>
       </ScrollView>
     );
   }
 }
+
+const mapStateToProps = ({ profile }) => ({ profile: profile.data });
+
+export default connect(mapStateToProps, null)(Profile);

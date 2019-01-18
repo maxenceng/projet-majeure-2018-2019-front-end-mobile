@@ -4,9 +4,11 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
+import CreateProfile from './pages/CreateProfile';
 import Eventpage from './pages/Eventpage';
 import EventDetails from './pages/EventDetails';
 import MenuBar from './components/MenuBar';
+import BottomMenu from './components/BottomMenu';
 import Participant from './components/Participant';
 import AllEvents from './pages/AllEvents';
 import EventsForMe from './pages/EventsForMe';
@@ -34,8 +36,10 @@ const Navigator = createStackNavigator({
   Conversation: { screen: Conversation },
   Interlocutor: { screen: Interlocutor },
   Interlocutor2: { screen: Interlocutor2 },
+  CreateProfile: { screen: CreateProfile },
+  BottomMenu: { screen: BottomMenu },
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'Profile',
 });
 
 export default createAppContainer(Navigator);

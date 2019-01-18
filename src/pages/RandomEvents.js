@@ -87,13 +87,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Eventpage extends React.Component {
-  static navigationOptions = navigationOptions('Eventpage');
-
-  handleSubmit = () => {
-    const value = this.form.getValue();
-    console.log('value: ', value);
-  }
+export default class RandomEvents extends React.Component {
+  static navigationOptions = navigationOptions('RandomEvents');
 
   render() {
     const { navigation: { navigate } } = this.props;

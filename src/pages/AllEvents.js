@@ -1,23 +1,44 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   View, TouchableHighlight, ScrollView,
 }
   from 'react-native';
+import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
 import MenuBar from '../components/MenuBar';
 import Events from '../components/Events';
+import actions, { actionPropTypes } from '../actions';
 
-export default class AllEvents extends React.Component {
+class AllEvents extends React.Component {
   static navigationOptions = navigationOptions('AllEvents');
-  /*
-  handleSubmit = () => {
-    const value = this.form.getValue();
-    console.log('value: ', value);
+
+  static propTypes = {
+    actions: actionPropTypes.isRequired,
+    events: PropTypes.instanceOf(Object).isRequired,
+  };
+
+  componentWillMount = () => {
+    const { actions: { getAllEventsAction } } = this.props;
+    getAllEventsAction({
+      date: null,
+      location: { lng: 4.869803, lat: 45.784816 },
+    });
   }
-  */
+
+  handleOnEventSelected = idevent => () => {
+    // console.log('yeahhhhhhhhhhh');
+    // console.log(event.ID_EVENT);
+    const { actions: { currentEventAction }, navigation: { navigate } } = this.props;
+    currentEventAction(idevent);
+    // getParticipantEvent({
+    //  idEvent: idevent,
+    // });
+    navigate('EventDetails');
+  }
 
   render() {
-    const { navigation: { navigate } } = this.props;
+    const { navigation: { navigate }, events } = this.props;
     return (
       <View>
         <MenuBar
@@ -36,11 +57,17 @@ export default class AllEvents extends React.Component {
           >
             <Events day="day" titleEvent="title event" dayDate="Date" description="Description" />
           </TouchableHighlight>
-          {new Array(13).fill(null).map(() => (
+          {events && events.map(event => (
             <TouchableHighlight
-              onPress={() => navigate('EventDetails')}
+              key={event.ID_EVENT}
+              onPress={this.handleOnEventSelected(event.ID_EVENT)}
             >
-              <Events day="day33" titleEvent="title event" dayDate="Date" description="Description" />
+              <Events
+                day={event.EVENT_DATE}
+                titleEvent={event.EVENT_NAME}
+                dayDate={event.EVENT_DATE}
+                description={event.EVENT_DESC}
+              />
             </TouchableHighlight>
           ))}
         </ScrollView>
@@ -48,3 +75,7 @@ export default class AllEvents extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ event: { data: { events } } }) => ({ events });
+
+export default connect(mapStateToProps, actions)(AllEvents);

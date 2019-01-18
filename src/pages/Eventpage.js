@@ -77,11 +77,6 @@ const styles = StyleSheet.create({
 export default class Eventpage extends React.Component {
   static navigationOptions = navigationOptions('Eventpage');
 
-  handleSubmit = () => {
-    const value = this.form.getValue();
-    console.log('value: ', value);
-  }
-
   render() {
     const { navigation: { navigate } } = this.props;
     return (

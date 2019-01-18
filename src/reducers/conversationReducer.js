@@ -1,4 +1,4 @@
-import { MESSAGES_REQUEST, MESSAGES_SUCCESS, MESSAGES_ERROR } from '../actions/chatAction/getMessagesAction';
+import { CONVERSATIONS_REQUEST, CONVERSATIONS_SUCCESS, CONVERSATIONS_ERROR } from '../actions/chatAction/getConversationsAction';
 
 const defaultState = {
   err: null,
@@ -8,21 +8,21 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case MESSAGES_REQUEST:
+    case CONVERSATIONS_REQUEST:
       return {
         ...state,
         err: null,
         data: {},
         isFetching: true,
       };
-    case MESSAGES_SUCCESS:
+    case CONVERSATIONS_SUCCESS:
       return {
         ...state,
         err: null,
         data: action.payload.data,
         isFetching: false,
       };
-    case MESSAGES_ERROR:
+    case CONVERSATIONS_ERROR:
       return {
         ...state,
         err: action.payload,

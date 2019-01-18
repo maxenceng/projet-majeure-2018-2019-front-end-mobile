@@ -5,6 +5,8 @@ import {
   from 'react-native';
 import navigationOptions from '../utils/navigationOptions';
 import Participant from '../components/Participant';
+import MenuBar from '../components/MenuBar';
+import BottomMenu from '../components/BottomMenu';
 
 
 /* const styles = StyleSheet.create({
@@ -53,9 +55,20 @@ export default class People extends React.Component {
 
   render() {
     const { navigation: { navigate } } = this.props;
-    // console.log(this.props.color);
     return (
       <View>
+        <MenuBar
+          navigate={navigate}
+          style={{
+            position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
+          }}
+        />
+        <BottomMenu
+          navigate={navigate}
+          style={{
+            position: 'absolute', right: 90, top: 60, bottom: 0, justifyContent: 'center', alignItems: 'center',
+          }}
+        />
         <ScrollView
           style={{
             height: '100%',

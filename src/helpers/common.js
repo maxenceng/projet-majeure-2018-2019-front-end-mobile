@@ -1,17 +1,18 @@
 import { AsyncStorage } from 'react-native';
 
+export const getAsyncStorageItem = async key => AsyncStorage.getItem(key);
+
 export const getJwtToken = async () => {
   try {
     return await AsyncStorage.getItem('userToken');
   } catch (error) {
-    console.log(error);
     return error;
   }
 };
 
 export const axiosHeaders = () => ({
   headers: {
-    Authorization: getJwtToken(),
+    Authorization: `Bearer ${getAsyncStorageItem('userToken')}`,
   },
 });
 

@@ -42,7 +42,6 @@ class SignIn extends React.Component {
       email,
       password,
     } = this.form.getValue();
-    console.log(email);
     loginAction({
       email,
       password,

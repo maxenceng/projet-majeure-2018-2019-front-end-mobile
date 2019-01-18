@@ -31,6 +31,7 @@ const options = {
   },
 };
 
+
 const styles = StyleSheet.create({
   container: {
     marginTop: 45,
@@ -67,13 +68,9 @@ class SignUp extends React.Component {
       password,
       passwordVerif,
     });
-    navigate('Eventpage');
+    navigate('CreateProfile');
   }
 
-  handleSubmit = () => {
-    const value = this.form.getValue();
-    console.log('value: ', value.name);
-  }
 
   render() {
     return (
