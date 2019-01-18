@@ -1,4 +1,5 @@
 import { GET_PROFILE_REQUEST, GET_PROFILE_SUCCESS, GET_PROFILE_ERROR } from '../actions/profileAction/getProfileAction';
+// eslint-disable-next-line
 import { PROFILE_SAVE_REQUEST, PROFILE_SAVE_SUCCESS, PROFILE_SAVE_ERROR } from '../actions/profileAction/profileSaveAction';
 
 const defaultState = {

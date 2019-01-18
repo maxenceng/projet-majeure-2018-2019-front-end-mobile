@@ -2,7 +2,7 @@ import React from 'react';
 import {
   View, Button, StyleSheet, Text,
 } from 'react-native';
-import t from 'tcomb-form-native'; // 0.6.9
+import t from 'tcomb-form-native';
 import { connect } from 'react-redux';
 import navigationOptions from '../utils/navigationOptions';
 import actions, { actionPropTypes } from '../actions';
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#34495e',
+    width: '100%',
   },
 });
 
@@ -36,12 +37,23 @@ class SignIn extends React.Component {
     actions: actionPropTypes.isRequired,
   };
 
+  formOptions = {
+    fields: {
+      password: {
+        password: true,
+        secureTextEntry: true,
+      },
+    },
+  }
+
   onSubmit = () => {
     const { actions: { loginAction }, navigation: { navigate } } = this.props;
+    const value = this.form.getValue();
+    if (!value) return;
     const {
       email,
       password,
-    } = this.form.getValue();
+    } = value;
     loginAction({
       email,
       password,
@@ -52,7 +64,7 @@ class SignIn extends React.Component {
   render() {
     return (
       <View style={{
-        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center',
+        display: 'flex', alignItems: 'center',
       }}
       >
         <Text style={styles.title}>WeMe</Text>
@@ -60,6 +72,7 @@ class SignIn extends React.Component {
           <Form
             ref={(c) => { this.form = c; }}
             type={User}
+            options={this.formOptions}
           />
           <Button
             title="Sign In"

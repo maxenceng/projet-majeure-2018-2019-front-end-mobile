@@ -1,43 +1,66 @@
 import React from 'react';
-import {
-  View, ScrollView,
-}
-  from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import actions, { actionPropTypes } from '../actions';
 import navigationOptions from '../utils/navigationOptions';
-import MenuBar from '../components/MenuBar';
-import Participant from '../components/Participant';
+import ConversationList from '../components/ConversationList';
 
-export default class Mail extends React.Component {
+class Mail extends React.Component {
   static navigationOptions = navigationOptions('Mail');
-  /*
-  handleSubmit = () => {
-    const value = this.form.getValue();
-    console.log('value: ', value);
+
+  static propTypes = {
+    actions: actionPropTypes.isRequired,
+    currentConv: PropTypes.shape({
+      idUser: PropTypes.string.isRequired,
+      person: PropTypes.string.isRequired,
+    }).isRequired,
   }
-  */
+
+  componentWillMount() {
+    const { actions: { getConversationsAction } } = this.props;
+    getConversationsAction();
+  }
+
+  getConversations = (props) => {
+    const { conversations } = props;
+    if (!conversations) return [];
+    return Object.entries(conversations).map(([idUser, v]) => ({
+      idUser,
+      person: `${v.USER_FIRSTNAME} ${v.USER_NAME}`,
+    }));
+  }
+
+  get conversations() {
+    const conversations = this.getConversations(this.props);
+    const { currentConv } = this.props;
+    const convInArray = conversations.find(conv => conv.idUser === currentConv.idUser);
+    if (!convInArray && currentConv.idUser !== '') {
+      return [
+        ...conversations,
+        {
+          idUser: currentConv.idUser,
+          person: currentConv.person,
+        },
+      ];
+    }
+    return conversations;
+  }
 
   render() {
     const { navigation: { navigate } } = this.props;
+    console.log(this.conversations);
     return (
-      <View>
-        <MenuBar
-          navigate={navigate}
-          style={{
-            position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
-          }}
-        />
-        <View>
-          <ScrollView
-            style={{
-              height: '100%',
-            }}
-          >
-            {new Array(13).fill(null).map(() => (
-              <Participant ab="Name" ef="Last message" navigate={navigate} />
-            ))}
-          </ScrollView>
-        </View>
-      </View>
+      <ConversationList navigate={navigate} conversations={this.conversations} />
     );
   }
 }
+
+const mapStateToProps = ({
+  conversation: { data: { conversations } },
+  currentConv,
+}) => ({
+  conversations,
+  currentConv,
+});
+
+export default connect(mapStateToProps, actions)(Mail);

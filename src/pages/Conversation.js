@@ -10,12 +10,6 @@ import Interlocutor2 from '../components/Interlocutor2';
 
 export default class Conversation extends React.Component {
   static navigationOptions = navigationOptions('Conversation');
-  /*
-  handleSubmit = () => {
-    const value = this.form.getValue();
-    console.log('value: ', value);
-  }
-  */
 
   render() {
     const { navigation: { navigate } } = this.props;

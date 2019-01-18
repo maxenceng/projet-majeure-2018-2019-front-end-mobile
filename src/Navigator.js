@@ -39,7 +39,7 @@ const Navigator = createStackNavigator({
   CreateProfile: { screen: CreateProfile },
   BottomMenu: { screen: BottomMenu },
 }, {
-  initialRouteName: 'Profile',
+  initialRouteName: 'Mail',
 });
 
 export default createAppContainer(Navigator);
