@@ -97,6 +97,7 @@ class CreateProfile extends React.Component {
   static propTypes = {
     actions: actionPropTypes.isRequired,
   };
+  /* eslint-disable react/no-unused-state */
 
   componentWillMount() {
     const {
@@ -116,7 +117,7 @@ class CreateProfile extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-   if (this.getProfile(this.props).PROFILE_AVATAR === ''
+    if (this.getProfile(this.props).PROFILE_AVATAR === ''
    && this.getProfile(newProps).PROFILE_AVATAR !== '') {
       const {
         PROFILE_AVATAR,
@@ -143,7 +144,7 @@ class CreateProfile extends React.Component {
         TAG_TEXT,
       });
     }
-  if (this.getProfile(this.props).USER_FIRSTNAME === ''
+    if (this.getProfile(this.props).USER_FIRSTNAME === ''
   && this.getProfile(newProps).USER_FIRSTNAME !== '') {
       const {
         USER_FIRSTNAME,
@@ -152,7 +153,7 @@ class CreateProfile extends React.Component {
         USER_FIRSTNAME,
       });
     }
-  if (this.getProfile(this.props).USER_NAME === '' && this.getProfile(newProps).USER_NAME !== '') {
+    if (this.getProfile(this.props).USER_NAME === '' && this.getProfile(newProps).USER_NAME !== '') {
       const {
         USER_NAME,
       } = this.getProfile(newProps);
@@ -161,6 +162,7 @@ class CreateProfile extends React.Component {
       });
     }
   }
+  /* eslint-enable react/no-unused-state */
 
   getProfile = (props) => {
     const { profile: { profile } } = props;

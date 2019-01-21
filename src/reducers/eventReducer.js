@@ -31,7 +31,7 @@ export default (state = defaultState, action) => {
         data: {},
         isFetching: false,
       };
-      case EVENTS_BY_FILTER_REQUEST:
+    case EVENTS_BY_FILTER_REQUEST:
       return {
         ...state,
         err: null,

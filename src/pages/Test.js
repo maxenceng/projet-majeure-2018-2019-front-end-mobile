@@ -1,30 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  View, TouchableHighlight, ScrollView, AppRegistry, Image, TouchableOpacity,
-  StyleSheet, Text,
+  View,
+  StyleSheet,
 }
   from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
-import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
 import MenuBar from '../components/MenuBar';
-import Events from '../components/Events';
 import actions, { actionPropTypes } from '../actions';
 
 const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
 
-
+const styles = StyleSheet.create({
+  dropdown_1: {
+    flex: 1,
+    top: 32,
+    left: 8,
+  },
+});
 
 class Test extends React.Component {
   static navigationOptions = navigationOptions('Test');
 
   static propTypes = {
     actions: actionPropTypes.isRequired,
-    events: PropTypes.instanceOf(Object).isRequired,
+    // events: PropTypes.instanceOf(Object).isRequired,
   };
 
-  componentWillMount = () => {
+  componentWillMount() {
     const { actions: { getAllEventsAction } } = this.props;
     getAllEventsAction({
       date: null,
@@ -39,8 +43,7 @@ class Test extends React.Component {
       actions: {
         currentEventAction,
         getParticipantEventAction,
-        getInterestedEventAction,
-      }, navigation: { navigate }
+      }, navigation: { navigate },
     } = this.props;
     currentEventAction(idevent);
     getParticipantEventAction({
@@ -56,7 +59,7 @@ class Test extends React.Component {
   }
 
   render() {
-    const { navigation: { navigate }, events } = this.props;
+    const { navigation: { navigate } } = this.props;
     return (
       <View>
         <MenuBar
@@ -65,9 +68,10 @@ class Test extends React.Component {
             position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
           }}
         />
-          <ModalDropdown style={styles.dropdown_1}
-                           options={DEMO_OPTIONS_1}
-            />
+        <ModalDropdown
+          style={styles.dropdown_1}
+          options={DEMO_OPTIONS_1}
+        />
       </View>
     );
   }
@@ -76,12 +80,3 @@ class Test extends React.Component {
 const mapStateToProps = ({ event: { data: { events } } }) => ({ events });
 
 export default connect(mapStateToProps, actions)(Test);
-
-
-const styles = StyleSheet.create({
-  dropdown_1: {
-    flex: 1,
-    top: 32,
-    left: 8,
-  },
-});

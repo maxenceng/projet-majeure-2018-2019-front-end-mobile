@@ -11,7 +11,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case PARTICIPATE_EVENT_SUCCESS:
-    console.log('je participe a l event');
+      console.log('je participe a l event');
       return {
         ...state,
         err: null,
@@ -39,7 +39,7 @@ export default (state = defaultState, action) => {
         data: null,
         isFetching: true,
       };
-      case GET_PARTICIPATION_STATUS_SUCCESS:
+    case GET_PARTICIPATION_STATUS_SUCCESS:
       return {
         ...state,
         err: null,

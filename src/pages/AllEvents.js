@@ -63,8 +63,7 @@ class AllEvents extends React.Component {
             marginTop: 60, width: 300, marginLeft: 30, height: 475, borderColor: 'black', borderWidth: 1,
           }}
         >
-          {events && events.map(event => {
-            return (
+          {events && events.map(event => (
             <TouchableHighlight
               key={event.ID_EVENT}
               onPress={this.handleOnEventSelected(event.ID_EVENT)}
@@ -72,11 +71,11 @@ class AllEvents extends React.Component {
               <Events
                 day={this.getDate(event)}
                 titleEvent={event.EVENT_NAME}
-                dayDate={' '}
+                dayDate=" "
                 description={event.EVENT_DESC}
               />
             </TouchableHighlight>
-          )})}
+          ))}
         </ScrollView>
       </View>
     );

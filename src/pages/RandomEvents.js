@@ -104,6 +104,7 @@ export default class RandomEvents extends React.Component {
           onPress={() => navigate('Profile')}
         >
           <Text style={styles.event1}>
+
             All Events
           </Text>
         </TouchableHighlight>
@@ -111,6 +112,7 @@ export default class RandomEvents extends React.Component {
           onPress={() => navigate('Profile')}
         >
           <Text style={styles.event1content}>
+
             All the good stuff, everywhere
           </Text>
         </TouchableHighlight>
@@ -118,6 +120,7 @@ export default class RandomEvents extends React.Component {
           onPress={() => navigate('Profile')}
         >
           <Text style={styles.event2}>
+
             Events For me
           </Text>
         </TouchableHighlight>
@@ -125,6 +128,7 @@ export default class RandomEvents extends React.Component {
           onPress={() => navigate('Profile')}
         >
           <Text style={styles.event2content}>
+
             Want something specific ?
           </Text>
         </TouchableHighlight>
@@ -132,6 +136,7 @@ export default class RandomEvents extends React.Component {
           onPress={() => navigate('Profile')}
         >
           <Text style={styles.event3}>
+
             Random Event
           </Text>
         </TouchableHighlight>
@@ -139,6 +144,7 @@ export default class RandomEvents extends React.Component {
           onPress={() => navigate('Profile')}
         >
           <Text style={styles.event3content}>
+
             Feeling Adventurous
           </Text>
         </TouchableHighlight>

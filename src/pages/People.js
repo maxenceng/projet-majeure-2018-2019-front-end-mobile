@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import {
-  View, ScrollView,
-}
-  from 'react-native';
 import navigationOptions from '../utils/navigationOptions';
 import Participant from '../components/Participant';
 import MenuBar from '../components/MenuBar';
@@ -84,33 +80,33 @@ class People extends React.Component {
       USER_NAME: PropTypes.string.isRequired,
       PROFILE_AVATAR: PropTypes.string.isRequired,
     })),
-    interested: PropTypes.arrayOf(PropTypes.shape({
-      ID_USER: PropTypes.string.isRequired,
-      USER_FIRSTNAME: PropTypes.string.isRequired,
-      USER_NAME: PropTypes.string.isRequired,
-      PROFILE_AVATAR: PropTypes.string.isRequired,
-    })),
-    participation: PropTypes.string.isRequired,
+    // interested: PropTypes.arrayOf(PropTypes.shape({
+    //   ID_USER: PropTypes.string.isRequired,
+    //   USER_FIRSTNAME: PropTypes.string.isRequired,
+    //   USER_NAME: PropTypes.string.isRequired,
+    //   PROFILE_AVATAR: PropTypes.string.isRequired,
+    // })),
+    // participation: PropTypes.string.isRequired,
   };
 
   state = {
-    curEvent: {
-      EVENT_DATE: '',
-      EVENT_DESC: '',
-      EVENT_NAME: '',
-      ID_EVENT: '',
-      ID_LOCATION: '',
-      LOC_DISCTRICT: '',
-      LOC_EVENT: '',
-      LOC_LATITUDE: '',
-      LOC_LONGITUDE: '',
-    },
+    // curEvent: {
+    //   EVENT_DATE: '',
+    //   EVENT_DESC: '',
+    //   EVENT_NAME: '',
+    //   ID_EVENT: '',
+    //   ID_LOCATION: '',
+    //   LOC_DISCTRICT: '',
+    //   LOC_EVENT: '',
+    //   LOC_LATITUDE: '',
+    //   LOC_LONGITUDE: '',
+    // },
   };
 
   static defaultProps = {
     events: [],
     participant: [],
-    interested: [],
+    // interested: [],
   }
 
   componentWillMount() {
@@ -118,7 +114,7 @@ class People extends React.Component {
     if (this.findEvent()) {
       AsyncStorage.setItem('currentEvent', JSON.stringify(this.findEvent()));
     }
-    this.setState({ curEvent: this.findEvent() });
+    // this.setState({ curEvent: this.findEvent() });
     // console.log(curEvent.EVENT_NAME);
     getStatusParticipationAction(idEvent);
     console.log(idEvent);

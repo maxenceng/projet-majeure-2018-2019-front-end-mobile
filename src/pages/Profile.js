@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions, { actionPropTypes } from '../actions';
 import {
   View, Button, StyleSheet, Text, Image, ScrollView,
 }
   from 'react-native';
 import PropTypes from 'prop-types';
+import actions, { actionPropTypes } from '../actions';
 import navigationOptions from '../utils/navigationOptions';
 import { getAsyncStorageItem } from '../helpers/common';
-import imageprofile from '../images/profile-pic.png';
 
 
 const styles = StyleSheet.create({
@@ -88,7 +87,7 @@ class Profile extends React.Component {
         </View>
         <Image
           style={styles.profileimage}
-          source={{uri: this.profile.PROFILE_AVATAR}}
+          source={{ uri: this.profile.PROFILE_AVATAR }}
         />
         <View style={styles.container}>
           <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Descritpion :</Text>
