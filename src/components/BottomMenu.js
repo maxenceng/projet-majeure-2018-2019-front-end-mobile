@@ -17,7 +17,7 @@ const BottomMenu = ({ navigate }) => (
   }}
   >
     <TouchableHighlight
-      onPress={() => navigate('EventsDescription')}
+      onPress={() => navigate('EventDetails')}
       style={{
         position: 'absolute', left: 0, top: 0, bottom: 0, width: 180, borderRightColor: 'black', borderRightWidth: 0.5, padding: 20, borderBottomColor: 'black', borderBottomWidth: 0.5,
       }}

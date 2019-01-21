@@ -10,9 +10,9 @@ export const conversationRequest = createAction(CONVERSATIONS_REQUEST);
 export const conversationSuccess = createAction(CONVERSATIONS_SUCCESS);
 export const conversationError = createAction(CONVERSATIONS_ERROR);
 
-export default () => (dispatch) => {
+export default () => async (dispatch) => {
   dispatch(conversationRequest());
-  const idUser = process.browser && getAsyncStorageItem.getItem('idUser');
+  const idUser = await getAsyncStorageItem('idUser');
   return axios.get(`userConv?idUser=${idUser}`, axiosHeaders())
     .then(res => dispatch(conversationSuccess(res)))
     .catch(err => dispatch(conversationError(getErrorMessage(err))));

@@ -10,9 +10,9 @@ export const getunParticipationRequest = createAction(UNPARTICIPATE_EVENT_REQUES
 export const getunParticipationSuccess = createAction(UNPARTICIPATE_EVENT_SUCCESS);
 export const getunParticipationError = createAction(UNPARTICIPATE_EVENT_ERROR);
 
-export default idEvent => (dispatch) => {
+export default idEvent => async (dispatch) => {
   dispatch(getunParticipationRequest());
-  const idUser = getAsyncStorageItem.getItem('idUser');
+  const idUser = await getAsyncStorageItem('idUser');
   return axios.get(`removeParticipation?idUser=${idUser}&idEvent=${idEvent}`)
     .then(res => dispatch(getunParticipationSuccess(res)))
     .catch(err => dispatch(getunParticipationError(err)));

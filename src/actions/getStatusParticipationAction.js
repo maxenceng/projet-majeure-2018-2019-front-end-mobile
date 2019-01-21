@@ -10,9 +10,9 @@ export const getParticipationStatusRequest = createAction(GET_PARTICIPATION_STAT
 export const getParticipationStatusSuccess = createAction(GET_PARTICIPATION_STATUS_SUCCESS);
 export const getParticipationStatustError = createAction(GET_PARTICIPATION_STATUS_ERROR);
 
-export default idEvent => (dispatch) => {
+export default idEvent => async (dispatch) => {
   dispatch(getParticipationStatusRequest());
-  const idUser = getAsyncStorageItem.getItem('idUser');
+  const idUser = await getAsyncStorageItem('idUser');
   return axios.get(`userParticipateEvent?idUser=${idUser}&idEvent=${idEvent}`)
     .then(res => dispatch(getParticipationStatusSuccess(res)))
     .catch(err => dispatch(getParticipationStatustError(err)));

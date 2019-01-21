@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-import { AsyncStorage } from 'react-native';
 import axios from '../helpers/axios';
+import { getAsyncStorageItem, axiosHeaders } from '../helpers/common';
 
 export const GET_USER_EVENTS_REQUEST = 'GET_USER_EVENTS_REQUEST';
 export const GET_USER_EVENTS_SUCCESS = 'GET_USER_EVENTS_SUCCESS';
@@ -10,10 +10,10 @@ export const getUserEventRequest = createAction(GET_USER_EVENTS_REQUEST);
 export const getUserEventSuccess = createAction(GET_USER_EVENTS_SUCCESS);
 export const getUserEventError = createAction(GET_USER_EVENTS_ERROR);
 
-export default () => (dispatch) => {
+export default () => async (dispatch) => {
   dispatch(getUserEventRequest());
-  const idUser = AsyncStorage.getItem('idUser');
-  return axios.get(`userEvents?idUser=${idUser}`)
+  const idUser = await getAsyncStorageItem('idUser');
+  return axios.get(`userEvents?idUser=${idUser}`, axiosHeaders())
     .then(res => dispatch(getUserEventSuccess(res)))
     .catch(err => dispatch(getUserEventError(err)));
 };

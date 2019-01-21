@@ -11,6 +11,7 @@ import MenuBar from './components/MenuBar';
 import BottomMenu from './components/BottomMenu';
 import Participant from './components/Participant';
 import AllEvents from './pages/AllEvents';
+import Test from './pages/Test';
 import EventsForMe from './pages/EventsForMe';
 import RandomEvents from './pages/RandomEvents';
 import People from './pages/People';
@@ -38,8 +39,9 @@ const Navigator = createStackNavigator({
   Interlocutor2: { screen: Interlocutor2 },
   CreateProfile: { screen: CreateProfile },
   BottomMenu: { screen: BottomMenu },
+  Test: { screen: Test },
 }, {
-  initialRouteName: 'Profile',
+  initialRouteName: 'AllEvents',
 });
 
 export default createAppContainer(Navigator);

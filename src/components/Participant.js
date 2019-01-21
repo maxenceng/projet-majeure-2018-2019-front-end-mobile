@@ -5,7 +5,6 @@ import {
 }
   from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import imageprofile from '../images/edsheeran.jpg';
 
 const styles = StyleSheet.create({
   Item1: {
@@ -41,8 +40,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
 });
+
 const Participant = ({
-  ab, ef, navigate,
+  profileAvatar, ab, ef, navigate,
 }) => (
   <View style={{
   }}
@@ -53,7 +53,7 @@ const Participant = ({
     >
       <Image
         style={styles.eventimage}
-        source={imageprofile}
+        source={{ uri: profileAvatar }}
       />
       <Text style={styles.Item1}>{ab}</Text>
       <TouchableHighlight
@@ -79,6 +79,7 @@ const Participant = ({
 Participant.propTypes = {
   ab: PropTypes.string.isRequired,
   ef: PropTypes.string.isRequired,
+  profileAvatar: PropTypes.string.isRequired,
   navigate: PropTypes.func.isRequired,
 };
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import actions, { actionPropTypes } from '../actions';
 import {
   View, Button, StyleSheet, Text, Image, ScrollView,
 }
   from 'react-native';
 import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
+import { getAsyncStorageItem } from '../helpers/common';
 import imageprofile from '../images/profile-pic.png';
 
 
@@ -34,11 +36,20 @@ class Profile extends React.Component {
   static navigationOptions = navigationOptions('Profile');
 
   static propTypes = {
+    actions: actionPropTypes.isRequired,
     profile: PropTypes.instanceOf(Object).isRequired,
   }
 
-
-  onChange = name => ({ target: { value } }) => this.setState({ [name]: value });
+  componentWillReceiveProps(newProps) {
+    const { actions: { getProfileAction }, profile } = this.props;
+    const { profile: newProfile } = newProps;
+    if (newProfile.PROFILE_DESC && !profile.PROFILE_DESC) {
+      console.log(newProfile, profile);
+      if (getAsyncStorageItem('userToken') && getAsyncStorageItem('idUser')) {
+        getProfileAction();
+      }
+    }
+  }
 
   get profile() {
     const { profile: { profile } } = this.props;
@@ -47,7 +58,7 @@ class Profile extends React.Component {
         PROFILE_AVATAR: '',
         PROFILE_DESC: '',
         TAG_TEXT: '',
-        USER_FIRSTNAME: 'EBER',
+        USER_FIRSTNAME: '',
         USER_NAME: '',
       };
     }
@@ -77,7 +88,7 @@ class Profile extends React.Component {
         </View>
         <Image
           style={styles.profileimage}
-          source={imageprofile}
+          source={{uri: this.profile.PROFILE_AVATAR}}
         />
         <View style={styles.container}>
           <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Descritpion :</Text>
@@ -85,7 +96,7 @@ class Profile extends React.Component {
           <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 10 }}>Firstname :</Text>
           <Text style={{ fontSize: 15 }}>{this.profile.USER_FIRSTNAME}</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 10 }}>Username :</Text>
-          <Text style={{ fontSize: 15 }}>{this.profile.USER_FIRSTNAME}</Text>
+          <Text style={{ fontSize: 15 }}>{this.profile.USER_NAME}</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 10 }}>Tags :</Text>
           <Text style={{ fontSize: 15 }}>{this.profile.TAG_TEXT}</Text>
         </View>
@@ -102,4 +113,4 @@ class Profile extends React.Component {
 
 const mapStateToProps = ({ profile }) => ({ profile: profile.data });
 
-export default connect(mapStateToProps, null)(Profile);
+export default connect(mapStateToProps, actions)(Profile);

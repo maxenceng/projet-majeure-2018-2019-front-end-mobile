@@ -19,7 +19,7 @@ export default ({
   passwordVerif,
 }) => (dispatch) => {
   dispatch(registerRequest());
-  return axios.post('signUp', {
+  return axios.post('connexionOpenId', {
     name,
     firstname,
     email,
@@ -28,10 +28,9 @@ export default ({
   })
     .then((res) => {
       dispatch(registerSuccess(res));
+      // console.log(res.data.token);
       AsyncStorage.setItem('userToken', res.data.token);
       AsyncStorage.setItem('idUser', res.data.idUser);
     })
-    .catch((err) => {
-      dispatch(registerError(getErrorMessage(err)));
-    });
+    .catch(err => dispatch(registerError(getErrorMessage(err))));
 };

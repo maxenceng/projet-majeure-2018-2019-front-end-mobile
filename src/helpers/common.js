@@ -4,15 +4,15 @@ export const getAsyncStorageItem = async key => AsyncStorage.getItem(key);
 
 export const getJwtToken = async () => {
   try {
-    return await AsyncStorage.getItem('userToken');
+    return await getAsyncStorageItem('userToken');
   } catch (error) {
     return error;
   }
 };
 
-export const axiosHeaders = () => ({
+export const axiosHeaders = async () => ({
   headers: {
-    Authorization: `Bearer ${getAsyncStorageItem('userToken')}`,
+    Authorization: `Bearer ${await getAsyncStorageItem('userToken')}`,
   },
 });
 

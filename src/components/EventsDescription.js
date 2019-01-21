@@ -4,7 +4,6 @@ import {
 }
   from 'react-native';
 import PropTypes from 'prop-types';
-import imageprofile from '../images/edsheeran.jpg';
 
 const styles = StyleSheet.create({
   Item1: {
@@ -54,22 +53,22 @@ const styles = StyleSheet.create({
     alignItems: 'center', */
     width: 180,
     height: 180,
-    marginBottom: 20,
+    marginBottom: 30,
   },
 });
 const EventsDescription = ({
-  titleEvent, dayDate, placeofevent, description,
+  imageEvent, titleEvent, dayDate, placeofevent, description,
 }) => (
   <View style={{
-    position: 'absolute', top: 300, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center',
+    position: 'absolute', top: 50, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center',
   }}
   >
     <Image
       style={styles.eventimage}
-      source={imageprofile}
+      source={{ uri: imageEvent }}
     />
     <View style={{
-      position: 'relative', marginRight: 60,
+      position: 'relative', marginRight: 30,
     }}
     >
       <Text>
@@ -93,6 +92,7 @@ EventsDescription.propTypes = {
   titleEvent: PropTypes.string.isRequired,
   placeofevent: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  imageEvent: PropTypes.string.isRequired,
 };
 
 export default EventsDescription;

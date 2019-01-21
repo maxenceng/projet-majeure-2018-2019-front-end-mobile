@@ -6,7 +6,7 @@ import {
   from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import navigationOptions from '../utils/navigationOptions';
-import actions from '../actions';
+import actions, { actionPropTypes } from '../actions';
 import imageprofile from '../images/profile-pic.png';
 // import Layout from './Layout';
 
@@ -15,6 +15,7 @@ import imageprofile from '../images/profile-pic.png';
 const { Form } = t.form;
 
 const User = t.struct({
+  avatar: t.String,
   Description: t.String,
   Firstname: t.String,
   Username: t.String,
@@ -92,17 +93,10 @@ const styles = StyleSheet.create({
 
 class CreateProfile extends React.Component {
   static navigationOptions = navigationOptions('CreateProfile');
-  /*
+
   static propTypes = {
     actions: actionPropTypes.isRequired,
   };
-
-  state={ PROFILE_AVATAR: '',
-    PROFILE_DESC: '',
-    TAG_TEXT: '',
-    USER_FIRSTNAME: '',
-    USER_NAME: '',
-  }
 
   componentWillMount() {
     const {
@@ -122,7 +116,7 @@ class CreateProfile extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-   if (this.getProfile(this.props).PROFILE_AVATAR === '' 
+   if (this.getProfile(this.props).PROFILE_AVATAR === ''
    && this.getProfile(newProps).PROFILE_AVATAR !== '') {
       const {
         PROFILE_AVATAR,
@@ -131,7 +125,7 @@ class CreateProfile extends React.Component {
         PROFILE_AVATAR,
       });
     }
-    if (this.getProfile(this.props).PROFILE_DESC === '' 
+    if (this.getProfile(this.props).PROFILE_DESC === ''
     && this.getProfile(newProps).PROFILE_DESC !== '') {
       const {
         PROFILE_DESC,
@@ -140,7 +134,7 @@ class CreateProfile extends React.Component {
         PROFILE_DESC,
       });
     }
-    if (this.getProfile(this.props).TAG_TEXT === '' 
+    if (this.getProfile(this.props).TAG_TEXT === ''
     && this.getProfile(newProps).TAG_TEXT !== '') {
       const {
         TAG_TEXT,
@@ -149,7 +143,7 @@ class CreateProfile extends React.Component {
         TAG_TEXT,
       });
     }
-  if (this.getProfile(this.props).USER_FIRSTNAME === '' 
+  if (this.getProfile(this.props).USER_FIRSTNAME === ''
   && this.getProfile(newProps).USER_FIRSTNAME !== '') {
       const {
         USER_FIRSTNAME,
@@ -194,10 +188,33 @@ class CreateProfile extends React.Component {
       USER_NAME,
     };
   }
-  */
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    const { actions: { profileSaveAction }, navigation: { navigate } } = this.props;
+    const {
+      avatar,
+      Description,
+      Firstname,
+      Username,
+      Tags,
+    } = this.form.getValue();
+    console.log(Description);
+    console.log(Firstname);
+    console.log(Username);
+    console.log(Tags);
+    profileSaveAction({
+      PROFILE_AVATAR: avatar,
+      PROFILE_DESC: Description,
+      TAG_TEXT: Tags,
+      USER_FIRSTNAME: Firstname,
+      USER_NAME: Username,
+    });
+    navigate('Profile');
+  }
+
 
   render() {
-    const { navigation: { navigate } } = this.props;
     return (
       <ScrollView>
         <View>
@@ -217,7 +234,7 @@ class CreateProfile extends React.Component {
         <View style={[{ width: 100, marginLeft: 125 }]}>
           <Button
             title="Save"
-            onPress={() => navigate('Eventpage')}
+            onPress={this.onSubmit}
           />
         </View>
       </ScrollView>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  View,
+  View, Button,
 }
   from 'react-native';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import navigationOptions from '../utils/navigationOptions';
 import MenuBar from '../components/MenuBar';
 import BottomMenu from '../components/BottomMenu';
 import EventsDescription from '../components/EventsDescription';
-import actions from '../actions';
+import actions, { actionPropTypes } from '../actions';
 
 
 class EventDetails extends React.Component {
@@ -17,7 +17,7 @@ class EventDetails extends React.Component {
   // console.log(this.props.navigation.state.params.event.ID_EVENT);
 
   static propTypes = {
-    // actions: actionPropTypes.isRequired,
+    actions: actionPropTypes.isRequired,
     idEvent: PropTypes.string.isRequired,
     events: PropTypes.arrayOf(PropTypes.shape({
       EVENT_DATE: PropTypes.string.isRequired,
@@ -29,7 +29,9 @@ class EventDetails extends React.Component {
       LOC_EVENT: PropTypes.string.isRequired,
       LOC_LATITUDE: PropTypes.string.isRequired,
       LOC_LONGITUDE: PropTypes.string.isRequired,
+      MEDIA_CONTENT: PropTypes.string.isRequired,
     })),
+    // participation: PropTypes.string.isRequired,
   };
 
   state = {
@@ -51,9 +53,9 @@ class EventDetails extends React.Component {
   }
 
   componentWillMount() {
-    // const { idEvent } = this.props;
+    const { idEvent, actions: { getStatusParticipationAction } } = this.props;
     this.setState({ curEvent: this.findEvent() });
-    // getStatusParticipationAction(idEvent);
+    getStatusParticipationAction(idEvent);
   }
 
   findEvent = () => {
@@ -67,9 +69,20 @@ class EventDetails extends React.Component {
     return `${dateS[1]} ${dateS[2]} ${dateS[3]}`;
   }
 
+  onClickParticipate = () => {
+    const { idEvent, actions: { participateEventAction } } = this.props;
+    participateEventAction(idEvent);
+  }
+
+  onClickUnParticipate = () => {
+    const { idEvent, actions: { unParticipateEventAction } } = this.props;
+    unParticipateEventAction(idEvent);
+  }
 
   render() {
-    const { navigation: { navigate } } = this.props;
+    const {
+      navigation: { navigate },
+    } = this.props;
     const { curEvent } = this.state;
     return (
       <View>
@@ -86,11 +99,30 @@ class EventDetails extends React.Component {
           }}
         />
         <EventsDescription
+          imageEvent={curEvent.MEDIA_CONTENT}
           titleEvent={curEvent.EVENT_NAME}
           dayDate={this.getDate(curEvent)}
           placeofevent={curEvent.LOC_DISTRICT}
           description={curEvent.EVENT_DESC}
         />
+        <View style={[{
+          width: 200, marginLeft: 25, marginTop: 400,
+        }]}
+        >
+          <Button
+            title="Participate"
+            onPress={this.onClickParticipate}
+          />
+        </View>
+        <View style={[{
+          width: 200, marginLeft: 75,
+        }]}
+        >
+          <Button
+            title="Unparticipate"
+            onPress={this.onClickUnParticipate}
+          />
+        </View>
       </View>
     );
   }

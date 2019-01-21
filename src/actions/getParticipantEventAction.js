@@ -10,9 +10,9 @@ export const getParticipantRequest = createAction(GET_PARTICIPANT_REQUEST);
 export const getParticipantSuccess = createAction(GET_PARTICIPANT_SUCCESS);
 export const getParticipantError = createAction(GET_PARTICIPANT_ERROR);
 
-export default ({ idEvent }) => (dispatch) => {
+export default ({ idEvent }) => async (dispatch) => {
   dispatch(getParticipantRequest());
-  // const idUser = getAsyncStorageItem.getItem('idUser');
+  // const idUser = await getAsyncStorageItem.getItem('idUser');
   return axios.get(`event?idEvent=${idEvent}`)
     .then(res => dispatch(getParticipantSuccess(res)))
     .catch(err => dispatch(getParticipantError(err)));
