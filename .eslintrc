@@ -4,6 +4,7 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "linebreak-style": 0,
-    "react/prop-types": ["error", { "ignore": ["navigation"] }]
+    "react/prop-types": ["error", { "ignore": ["navigation"] }],
+    "react/jsx-one-expression-per-line": 0
   }
 }
