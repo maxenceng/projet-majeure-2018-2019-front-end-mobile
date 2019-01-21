@@ -1,4 +1,9 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
+import {
+  reduxifyNavigator,
+  createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
+import { connect } from 'react-redux';
 
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
@@ -17,9 +22,8 @@ import People from './pages/People';
 import Mail from './pages/Mail';
 import Conversation from './pages/Conversation';
 import Interlocutor from './components/Interlocutor';
-import Interlocutor2 from './components/Interlocutor2';
 
-const Navigator = createStackNavigator({
+export const Navigator = createStackNavigator({
   Home: { screen: Home },
   SignIn: { screen: SignIn },
   SignUp: { screen: SignUp },
@@ -35,11 +39,18 @@ const Navigator = createStackNavigator({
   Mail: { screen: Mail },
   Conversation: { screen: Conversation },
   Interlocutor: { screen: Interlocutor },
-  Interlocutor2: { screen: Interlocutor2 },
   CreateProfile: { screen: CreateProfile },
   BottomMenu: { screen: BottomMenu },
 }, {
   initialRouteName: 'Mail',
 });
 
-export default createAppContainer(Navigator);
+export const middleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.nav,
+);
+const App = reduxifyNavigator(Navigator, 'root');
+const mapStateToProps = ({ nav }) => ({ state: nav });
+const AppWithNavigationState = connect(mapStateToProps)(App);
+
+export default AppWithNavigationState;

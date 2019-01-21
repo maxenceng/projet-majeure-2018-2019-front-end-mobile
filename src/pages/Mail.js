@@ -14,12 +14,18 @@ class Mail extends React.Component {
       idUser: PropTypes.string.isRequired,
       person: PropTypes.string.isRequired,
     }).isRequired,
-  }
+  };
 
   componentWillMount() {
     const { actions: { getConversationsAction } } = this.props;
     getConversationsAction();
   }
+
+  setActive = currentConv => () => {
+    const { actions: { currentConvAction, navigationAction } } = this.props;
+    currentConvAction(currentConv);
+    navigationAction('Conversation');
+  };
 
   getConversations = (props) => {
     const { conversations } = props;
@@ -28,7 +34,7 @@ class Mail extends React.Component {
       idUser,
       person: `${v.USER_FIRSTNAME} ${v.USER_NAME}`,
     }));
-  }
+  };
 
   get conversations() {
     const conversations = this.getConversations(this.props);
@@ -48,9 +54,12 @@ class Mail extends React.Component {
 
   render() {
     const { navigation: { navigate } } = this.props;
-    console.log(this.conversations);
     return (
-      <ConversationList navigate={navigate} conversations={this.conversations} />
+      <ConversationList
+        setActive={this.setActive}
+        navigate={navigate}
+        conversations={this.conversations}
+      />
     );
   }
 }

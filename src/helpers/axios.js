@@ -1,5 +1,6 @@
 import axios from 'axios';
+import { BASE_URL } from './common';
 
 export default axios.create({
-  baseURL: 'http://192.168.43.149:3001',
+  baseURL: BASE_URL,
 });

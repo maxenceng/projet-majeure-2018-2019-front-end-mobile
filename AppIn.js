@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import actions, { actionPropTypes } from './src/actions';
 import { getAsyncStorageItem } from './src/helpers/common';
 
-import Navigator from './src/Navigator';
+import ReduxNavigator from './src/Navigator';
 
 class AppIn extends React.Component {
   static propTypes = {
@@ -55,7 +55,7 @@ class AppIn extends React.Component {
 
   render() {
     return (
-      <Navigator />
+      <ReduxNavigator persistenceKey="wemePersistence" />
     );
   }
 }
