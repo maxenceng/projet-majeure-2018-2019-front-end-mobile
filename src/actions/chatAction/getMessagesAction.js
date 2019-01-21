@@ -12,7 +12,7 @@ export const messagesError = createAction(MESSAGES_ERROR);
 
 export default idSecondUser => async (dispatch) => {
   dispatch(messagesRequest());
-  const idUser = await getAsyncStorageItem.getItem('idUser');
+  const idUser = await getAsyncStorageItem('idUser');
   return axios.get(`conv?idUser=${idUser}&idSecondUser=${idSecondUser}`, axiosHeaders())
     .then(res => dispatch(messagesSuccess(res)))
     .catch(err => dispatch(messagesError(getErrorMessage(err))));

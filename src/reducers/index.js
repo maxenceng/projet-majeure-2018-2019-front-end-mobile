@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { createNavigationReducer } from 'react-navigation-redux-helpers';
 
 import auth from './authReducer';
 import message from './messageReducer';
@@ -12,6 +13,9 @@ import participate from './participateEventReducer';
 import userEvents from './userEvents';
 import currentConv from './currentConvReducer';
 import participation from './statusParticipationReducer';
+import { Navigator } from '../Navigator';
+
+const nav = createNavigationReducer(Navigator);
 
 export default combineReducers({
   auth,
@@ -26,4 +30,5 @@ export default combineReducers({
   userEvents,
   currentConv,
   participation,
+  nav,
 });

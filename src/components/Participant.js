@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
     bottom: -70,
     justifyContent: 'center',
     alignItems: 'center', */
-    marginTop: 7,
+    width: '100%',
     fontSize: 15,
     marginLeft: 15,
+    marginTop: 25,
     fontWeight: 'bold',
     color: 'black',
   },
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
 });
 
 const Participant = ({
-  profileAvatar, ab, ef, navigate,
+  profileAvatar, person, onClick,
 }) => (
   <View style={{
   }}
@@ -55,9 +56,9 @@ const Participant = ({
         style={styles.eventimage}
         source={{ uri: profileAvatar }}
       />
-      <Text style={styles.Item1}>{ab}</Text>
+      <Text style={styles.Item1}>{person}</Text>
       <TouchableHighlight
-        onPress={() => navigate('Conversation')}
+        onPress={onClick}
         style={{
           position: 'absolute', right: 20, top: 15, bottom: 0, justifyContent: 'center', alignItems: 'center',
         }}
@@ -70,17 +71,13 @@ const Participant = ({
         />
       </TouchableHighlight>
     </View>
-    <View>
-      <Text style={styles.Item3}>{ef}</Text>
-    </View>
   </View>
 );
 
 Participant.propTypes = {
-  ab: PropTypes.string.isRequired,
-  ef: PropTypes.string.isRequired,
   profileAvatar: PropTypes.string.isRequired,
-  navigate: PropTypes.func.isRequired,
+  person: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Participant;

@@ -1,5 +1,7 @@
 import { AsyncStorage } from 'react-native';
 
+export const BASE_URL = 'http://192.168.43.149:3001';
+
 export const getAsyncStorageItem = async key => AsyncStorage.getItem(key);
 
 export const getJwtToken = async () => {

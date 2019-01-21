@@ -26,6 +26,7 @@ import locationAction from './locationAction';
 import getEventByFilterAction from './eventAction/getEventByFilterAction';
 import getEventForMeAction from './getEventForMeAction';
 import switchEventModeAction from './switchEventModeAction';
+import navigationAction from './navigationAction';
 
 const allActions = {
   loginAction,
@@ -53,6 +54,7 @@ const allActions = {
   openIdLoginAction,
   getEventForMeAction,
   switchEventModeAction,
+  navigationAction,
 };
 
 export default dispatch => ({ actions: bindActionCreators(allActions, dispatch) });

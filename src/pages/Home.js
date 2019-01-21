@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     padding: 20,
-    backgroundColor: '#ffffff',
   },
   paragraph: {
     margin: 24,
@@ -52,7 +51,7 @@ export default class Home extends React.Component {
   render() {
     const { navigation: { navigate } } = this.props;
     return (
-      <View style={{ width: 300, marginLeft: 25 }}>
+      <View style={styles.container}>
         <View>
           <Text style={styles.title}>WeMe</Text>
         </View>

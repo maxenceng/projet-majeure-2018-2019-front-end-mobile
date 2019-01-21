@@ -12,6 +12,7 @@ import imageprofile from '../images/profile-pic.png';
 
 // const Form = t.form.Form;
 
+/* eslint-disable */
 const { Form } = t.form;
 
 const User = t.struct({

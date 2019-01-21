@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#34495e',
+    width: '100%',
   },
 });
 
@@ -53,13 +54,15 @@ class SignUp extends React.Component {
   };
 
   onSubmit = () => {
+    const value = this.form.getValue();
+    if (!value) return;
     const {
       name,
       firstname,
       email,
       password,
       passwordVerif,
-    } = this.form.getValue();
+    } = value;
     const { actions: { registerAction }, navigation: { navigate } } = this.props;
     registerAction({
       name,
@@ -69,6 +72,19 @@ class SignUp extends React.Component {
       passwordVerif,
     });
     navigate('CreateProfile');
+  }
+
+  formOptions = {
+    fields: {
+      password: {
+        password: true,
+        secureTextEntry: true,
+      },
+      passwordVerif: {
+        password: true,
+        secureTextEntry: true,
+      },
+    },
   }
 
 
