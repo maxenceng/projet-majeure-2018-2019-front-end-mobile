@@ -27,10 +27,11 @@ export default ({
     passwordVerif,
   })
     .then((res) => {
+      const idUser = res.data.idUser ? res.data.idUser : res.data.user.ID_USER;
       dispatch(registerSuccess(res));
       // console.log(res.data.token);
       AsyncStorage.setItem('userToken', res.data.token);
-      AsyncStorage.setItem('idUser', res.data.idUser);
+      AsyncStorage.setItem('idUser', idUser);
     })
     .catch(err => dispatch(registerError(getErrorMessage(err))));
 };

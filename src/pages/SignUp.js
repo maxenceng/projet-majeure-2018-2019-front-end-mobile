@@ -4,6 +4,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import t from 'tcomb-form-native'; // 0.6.9
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import navigationOptions from '../utils/navigationOptions';
 import actions, { actionPropTypes } from '../actions';
 
@@ -52,6 +54,46 @@ class SignUp extends React.Component {
   static propTypes = {
     actions: actionPropTypes.isRequired,
   };
+
+  googleLogin = (event) => {
+    console.log(event);
+    const { actions: { openIdLoginAction } } = this.props;
+    const {
+      email,
+      givenName,
+      googleId,
+      familyName,
+    } = event.profileObj;
+    openIdLoginAction({
+      email,
+      name: familyName,
+      firstname: givenName,
+      password: googleId,
+      passwordVerif: googleId,
+    });
+  };
+
+
+  facebookLogin = (event) => {
+    console.log(event);
+    const { actions: { openIdLoginAction } } = this.props;
+    const {
+      email,
+      name,
+      id,
+    } = event;
+    openIdLoginAction({
+      email,
+      name: name.split(' ')[1],
+      firstname: name.split(' ')[0],
+      password: id,
+      passwordVerif: id,
+    });
+  };
+
+  failGoogle = (err) => {
+    console.log(err);
+  }
 
   onSubmit = () => {
     const value = this.form.getValue();
@@ -106,6 +148,26 @@ class SignUp extends React.Component {
             title="Sign up"
           />
         </View>
+        <div className="openIds">
+          <div>
+            <GoogleLogin
+              className="openId"
+              clientId="529637638584-qp9rgeeg1g0n63ml36kg572falfj6m1l.apps.googleusercontent.com"
+              buttonText="Login with Google"
+              onSuccess={this.googleLogin}
+              onFailure={this.failGoogle}
+            />
+          </div>
+          <div>
+            <FacebookLogin
+              appId="501016000420647"
+              autoLoad
+              fields="name,email,picture"
+              callback={this.facebookLogin}
+              icon="fa-facebook"
+            />
+          </div>
+        </div>
       </View>
     );
   }
