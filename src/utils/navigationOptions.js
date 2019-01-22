@@ -1,9 +1,11 @@
+import { COLOR_PRIMARY, COLOR_SECONDARY } from '../helpers/common';
+
 export default title => ({
   title,
   headerStyle: {
-    backgroundColor: '#abcdef',
+    backgroundColor: COLOR_PRIMARY,
   },
-  headerTintColor: '#fff',
+  headerTintColor: COLOR_SECONDARY,
   headerTitleStyle: {
     fontWeight: 'bold',
     width: '100%',

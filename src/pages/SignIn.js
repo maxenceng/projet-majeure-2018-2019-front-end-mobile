@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Button, StyleSheet, Text,
+  View, StyleSheet, Text,
 } from 'react-native';
 import t from 'tcomb-form-native';
 import { connect } from 'react-redux';
@@ -8,6 +8,8 @@ import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import navigationOptions from '../utils/navigationOptions';
 import actions, { actionPropTypes } from '../actions';
+import { COLOR_TITLE } from '../helpers/common';
+import Button from '../components/Button';
 
 const { Form } = t.form;
 
@@ -18,17 +20,27 @@ const User = t.struct({
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 75,
-    width: 250,
-    backgroundColor: '#ffffff',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  content: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    height: '60%',
+    alignItems: 'center',
   },
   title: {
     fontSize: 30,
-    marginTop: 90,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e',
+    color: COLOR_TITLE,
     width: '100%',
+  },
+  form: {
+    width: '80%',
+  },
+  buttons: {
+    alignItems: 'center',
   },
 });
 
@@ -105,21 +117,21 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <View style={{
-        display: 'flex', alignItems: 'center',
-      }}
-      >
-        <Text style={styles.title}>WeMe</Text>
-        <View style={styles.container}>
-          <Form
-            ref={(c) => { this.form = c; }}
-            type={User}
-            options={this.formOptions}
-          />
-          <Button
-            title="Sign In"
-            onPress={this.onSubmit}
-          />
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.title}>WeMe</Text>
+          <View style={styles.form}>
+            <Form
+              ref={(c) => { this.form = c; }}
+              type={User}
+              options={this.formOptions}
+            />
+            <View style={styles.buttons}>
+              <Button style={styles.button} onPress={this.onSubmit}>
+                Sign In
+              </Button>
+            </View>
+          </View>
         </View>
         <div className="openIds">
           <div>
