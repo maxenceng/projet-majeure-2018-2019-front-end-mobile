@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   image: {
     height: 80,
     width: 80,
+    borderRadius: 50,
   },
 });
 
@@ -51,8 +52,14 @@ class Profile extends React.Component {
 
   static propTypes = {
     actions: actionPropTypes.isRequired,
-    profile: PropTypes.instanceOf(Object).isRequired,
-  }
+    profile: PropTypes.shape({
+      PROFILE_AVATAR: PropTypes.string.isRequired,
+      PROFILE_DESC: PropTypes.string.isRequired,
+      TAG_TEXT: PropTypes.string.isRequired,
+      USER_FIRSTNAME: PropTypes.string.isRequired,
+      USER_NAME: PropTypes.string.isRequired,
+    }).isRequired,
+  };
 
   componentWillReceiveProps(newProps) {
     const { actions: { getProfileAction }, profile } = this.props;
@@ -107,10 +114,12 @@ class Profile extends React.Component {
           <View>
             <Text style={styles.title}>{USER_FIRSTNAME} {USER_NAME}</Text>
           </View>
-          <Image
-            style={styles.image}
-            source={{ uri: PROFILE_AVATAR }}
-          />
+          <View style={{ alignItems: 'center' }}>
+            <Image
+              style={styles.image}
+              source={{ uri: PROFILE_AVATAR }}
+            />
+          </View>
           <ScrollView>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Description</Text>
             <Text style={{ fontSize: 15 }}>{PROFILE_DESC}</Text>

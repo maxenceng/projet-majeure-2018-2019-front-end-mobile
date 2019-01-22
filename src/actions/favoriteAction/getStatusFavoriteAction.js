@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-import axios from '../helpers/axios';
-import { axiosHeaders, getAsyncStorageItem } from '../helpers/common';
+import axios from '../../helpers/axios';
+import { axiosHeaders, getAsyncStorageItem } from '../../helpers/common';
 
 
 export const GET_FAVORITE_STATUS_REQUEST = 'GET_FAVORITE_STATUS_REQUEST';

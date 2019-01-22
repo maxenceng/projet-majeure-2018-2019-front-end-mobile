@@ -1,4 +1,4 @@
-import { GET_PARTICIPATION_STATUS_SUCCESS } from '../actions/getStatusParticipationAction';
+import { GET_PARTICIPATION_STATUS_SUCCESS } from '../actions/participationAction/getStatusParticipationAction';
 
 const defaultState = {
   err: null,

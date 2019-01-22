@@ -10,7 +10,7 @@ import connectionStatus from './connectionStatusReducer';
 import idEvent from './currentEventReducer';
 import participant from './participantReducer';
 import participate from './participateEventReducer';
-import userEvents from './userEvents';
+import userEvents from './userEventsReducer';
 import currentConv from './currentConvReducer';
 import participation from './statusParticipationReducer';
 import { Navigator } from '../Navigator';

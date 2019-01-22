@@ -8,8 +8,8 @@ import {
 import { Card, Title, Paragraph } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
-import MenuBar from '../components/MenuBar';
-import BottomMenu from '../components/BottomMenu';
+import MenuBar from '../containers/MenuBar';
+import TopMenu from '../containers/TopMenu';
 import actions, { actionPropTypes } from '../actions';
 import { COLOR_SECONDARY, COLOR_TERCIARY } from '../helpers/common';
 import Button from '../components/Button';
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
 
 class EventDetails extends React.Component {
   static navigationOptions = navigationOptions('EventDetails');
-  // console.log(this.props.navigation.state.params.curEvent.ID_EVENT);
 
   static propTypes = {
     actions: actionPropTypes.isRequired,
@@ -111,15 +110,13 @@ class EventDetails extends React.Component {
 
   render() {
     const {
-      navigation: { navigate },
       participate,
     } = this.props;
     const { curEvent } = this.state;
     return (
       <View>
         <MenuBar />
-        <BottomMenu
-          navigate={navigate}
+        <TopMenu
           style={{
             position: 'absolute', right: 90, top: 60, bottom: 0, justifyContent: 'center', alignItems: 'center',
           }}

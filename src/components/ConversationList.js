@@ -4,13 +4,12 @@ import {
   View, ScrollView,
 }
   from 'react-native';
-import MenuBar from './MenuBar';
+import MenuBar from '../containers/MenuBar';
 import Participant from './Participant';
 
-const ConversationList = ({ navigate, conversations, setActive }) => (
+const ConversationList = ({ conversations, setActive }) => (
   <View>
     <MenuBar
-      navigate={navigate}
       style={{
         position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
       }}
@@ -31,7 +30,6 @@ const ConversationList = ({ navigate, conversations, setActive }) => (
 
 ConversationList.propTypes = {
   conversations: PropTypes.instanceOf(Object).isRequired,
-  navigate: PropTypes.func.isRequired,
   setActive: PropTypes.func.isRequired,
 };
 

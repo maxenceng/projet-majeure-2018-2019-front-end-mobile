@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-import axios from '../helpers/axios';
-import { axiosHeaders, getAsyncStorageItem } from '../helpers/common';
+import axios from '../../helpers/axios';
+import { axiosHeaders, getAsyncStorageItem } from '../../helpers/common';
 
 export const PARTICIPATE_EVENT_REQUEST = 'PARTICIPATE_EVENT_REQUEST';
 export const PARTICIPATE_EVENT_SUCCESS = 'PARTICIPATE_EVENT_SUCCESS';

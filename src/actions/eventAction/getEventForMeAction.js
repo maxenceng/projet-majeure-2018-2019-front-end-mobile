@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-import axios from '../helpers/axios';
-import { getErrorMessage, axiosHeaders, getAsyncStorageItem } from '../helpers/common';
+import axios from '../../helpers/axios';
+import { getErrorMessage, axiosHeaders, getAsyncStorageItem } from '../../helpers/common';
 
 export const EVENTS_FOR_ME_REQUEST = 'EVENTS_FOR_ME_REQUEST';
 export const EVENTS_FOR_ME_SUCCESS = 'EVENTS_FOR_ME_SUCCESS';

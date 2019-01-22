@@ -13,19 +13,18 @@ import getAllEventsAction from './eventAction/getAllEventsAction';
 import currentEventAction from './currentEventAction';
 import getProfileAction from './profileAction/getProfileAction';
 import connectionStatusAction from './connectionStatusAction';
-import participateEventAction from './participateEventAction';
-import addFavEventAction from './addFavEventAction';
-import unParticipateEventAction from './unParticipateEventAction';
-import removeFavEventAction from './removeFavEventAction';
+import participateEventAction from './participationAction/participateEventAction';
+import addFavEventAction from './favoriteAction/addFavEventAction';
+import unParticipateEventAction from './participationAction/unParticipateEventAction';
+import removeFavEventAction from './favoriteAction/removeFavEventAction';
 import getParticipantEventAction from './getParticipantEventAction';
 import userEventsAction from './userEventsAction';
 import getInterestedEventAction from './getInterestedEventAction';
-import getStatusParticipationAction from './getStatusParticipationAction';
-import getStatusFavoriteAction from './getStatusFavoriteAction';
+import getStatusParticipationAction from './participationAction/getStatusParticipationAction';
+import getStatusFavoriteAction from './favoriteAction/getStatusFavoriteAction';
 import locationAction from './locationAction';
 import getEventByFilterAction from './eventAction/getEventByFilterAction';
-import getEventForMeAction from './getEventForMeAction';
-import switchEventModeAction from './switchEventModeAction';
+import getEventForMeAction from './eventAction/getEventForMeAction';
 import navigationAction from './navigationAction';
 
 const allActions = {
@@ -53,7 +52,6 @@ const allActions = {
   getEventByFilterAction,
   openIdLoginAction,
   getEventForMeAction,
-  switchEventModeAction,
   navigationAction,
 };
 
@@ -85,5 +83,4 @@ export const actionPropTypes = PropTypes.shape({
   locationAction: ptFuncReq,
   getEventByFilterAction: ptFuncReq,
   getEventForMeAction: ptFuncReq,
-  switchEventModeAction: ptFuncReq,
 });

@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
 }
   from 'react-native';
-import MenuBar from './MenuBar';
+import MenuBar from '../containers/MenuBar';
 import Interlocutor from './Interlocutor';
 import { COLOR_TITLE } from '../helpers/common';
 import Button from './Button';
@@ -61,7 +61,7 @@ export default class Conversation extends React.Component {
     value: '',
   };
 
-  onChange = ({ nativeEvent: { text: value } }) => this.setState({ value }, console.log(value));
+  onChange = ({ nativeEvent: { text: value } }) => this.setState({ value });
 
   render() {
     const {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View, StyleSheet, Text, KeyboardAvoidingView,
 } from 'react-native';
@@ -47,7 +48,24 @@ class SignIn extends React.Component {
 
   static propTypes = {
     actions: actionPropTypes.isRequired,
+    auth: PropTypes.shape({
+      idUser: PropTypes.string.isRequired,
+      message: PropTypes.string.isRequired,
+      token: PropTypes.string.isRequired,
+    }),
   };
+
+  static defaultProps = {
+    auth: {},
+  };
+
+  componentWillReceiveProps(newProps) {
+    const { actions: { navigationAction }, auth } = this.props;
+    const { auth: newAuth } = newProps;
+    if (newAuth.token && !auth.token) {
+      navigationAction('Eventpage');
+    }
+  }
 
   formOptions = {
     fields: {
@@ -59,7 +77,7 @@ class SignIn extends React.Component {
   }
 
   onSubmit = () => {
-    const { actions: { loginAction }, navigation: { navigate } } = this.props;
+    const { actions: { loginAction } } = this.props;
     const value = this.form.getValue();
     if (!value) return;
     const {
@@ -70,7 +88,6 @@ class SignIn extends React.Component {
       email,
       password,
     });
-    navigate('Eventpage');
   }
 
   render() {
@@ -96,4 +113,6 @@ class SignIn extends React.Component {
   }
 }
 
-export default connect(null, actions)(SignIn);
+const mapStateToProps = ({ auth: { data: auth } }) => ({ auth });
+
+export default connect(mapStateToProps, actions)(SignIn);

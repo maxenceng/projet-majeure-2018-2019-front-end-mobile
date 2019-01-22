@@ -1,6 +1,6 @@
 import { ALL_EVENTS_REQUEST, ALL_EVENTS_SUCCESS, ALL_EVENTS_ERROR } from '../actions/eventAction/getAllEventsAction';
 import { EVENTS_BY_FILTER_REQUEST, EVENTS_BY_FILTER_SUCCESS, EVENTS_BY_FILTER_ERROR } from '../actions/eventAction/getEventByFilterAction';
-import { EVENTS_FOR_ME_REQUEST, EVENTS_FOR_ME_SUCCESS, EVENTS_FOR_ME_ERROR } from '../actions/getEventForMeAction';
+import { EVENTS_FOR_ME_REQUEST, EVENTS_FOR_ME_SUCCESS, EVENTS_FOR_ME_ERROR } from '../actions/eventAction/getEventForMeAction';
 
 const defaultState = {
   err: null,

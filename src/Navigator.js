@@ -12,13 +12,11 @@ import Profile from './pages/Profile';
 import CreateProfile from './pages/CreateProfile';
 import Eventpage from './pages/Eventpage';
 import EventDetails from './pages/EventDetails';
-import MenuBar from './components/MenuBar';
-import BottomMenu from './components/BottomMenu';
+import MenuBar from './containers/MenuBar';
+import TopMenu from './containers/TopMenu';
 import Participant from './components/Participant';
 import AllEvents from './pages/AllEvents';
-import Test from './pages/Test';
 import EventsForMe from './pages/EventsForMe';
-import RandomEvents from './pages/RandomEvents';
 import People from './pages/People';
 import Mail from './pages/Mail';
 import Conversation from './pages/Conversation';
@@ -33,7 +31,6 @@ export const Navigator = createStackNavigator({
   MenuBar: { screen: MenuBar },
   EventsForMe: { screen: EventsForMe },
   AllEvents: { screen: AllEvents },
-  RandomEvents: { screen: RandomEvents },
   EventDetails: { screen: EventDetails },
   People: { screen: People },
   Participant: { screen: Participant },
@@ -41,10 +38,9 @@ export const Navigator = createStackNavigator({
   Conversation: { screen: Conversation },
   Interlocutor: { screen: Interlocutor },
   CreateProfile: { screen: CreateProfile },
-  BottomMenu: { screen: BottomMenu },
-  Test: { screen: Test },
+  TopMenu: { screen: TopMenu },
 }, {
-  initialRouteName: 'Mail',
+  initialRouteName: 'Home',
 });
 
 export const middleware = createReactNavigationReduxMiddleware(

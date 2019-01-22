@@ -1,15 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-}
-  from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
-import MenuBar from '../components/MenuBar';
+import MenuBar from '../containers/MenuBar';
 import actions, { actionPropTypes } from '../actions';
 import { COLOR_SECONDARY, COLOR_TERCIARY } from '../helpers/common';
 
@@ -51,19 +46,15 @@ class AllEvents extends React.Component {
     });
   }
 
-  handleOnEventSelected = idevent => () => {
-    // console.log('yeahhhhhhhhhhh');
-    // console.log(event.ID_EVENT);
+  handleOnEventSelected = idEvent => () => {
     const {
       actions: {
         currentEventAction,
         getParticipantEventAction,
       }, navigation: { navigate },
     } = this.props;
-    currentEventAction(idevent);
-    getParticipantEventAction({
-      idEvent: idevent,
-    });
+    currentEventAction(idEvent);
+    getParticipantEventAction({ idEvent });
     navigate('EventDetails');
   }
 

@@ -4,52 +4,10 @@ import { AsyncStorage, View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
 import Participant from '../components/Participant';
-import MenuBar from '../components/MenuBar';
-import BottomMenu from '../components/BottomMenu';
+import MenuBar from '../containers/MenuBar';
+import TopMenu from '../containers/TopMenu';
 import actions, { actionPropTypes } from '../actions';
 import { getAsyncStorageItem } from '../helpers/common';
-
-
-/* const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-  title: {
-    marginTop: 103,
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-  description: {
-    marginTop: 10,
-    fontSize: 10,
-    textAlign: 'center',
-    color: '#34495e',
-  },
-  signIn: {
-    marginTop: 130,
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-  signUp: {
-    marginTop: 15,
-    fontSize: 20,
-  },
-});
-*/
 
 let idUser;
 getAsyncStorageItem('idUser').then((res) => {
@@ -114,28 +72,28 @@ class People extends React.Component {
     if (this.findEvent()) {
       AsyncStorage.setItem('currentEvent', JSON.stringify(this.findEvent()));
     }
-    // this.setState({ curEvent: this.findEvent() });
-    // console.log(curEvent.EVENT_NAME);
     getStatusParticipationAction(idEvent);
-    console.log(idEvent);
   }
 
   findEvent = () => {
     const { idEvent, events } = this.props;
-    console.log('event trouvé dans find event');
     return events.find(event => event.ID_EVENT === idEvent);
+  }
+
+  onClick = conv => () => {
+    const { actions: { currentConvAction, navigationAction } } = this.props;
+    currentConvAction(conv);
+    navigationAction('Conversation');
   }
 
   render() {
     const {
-      navigation: { navigate },
       participant,
     } = this.props;
     return (
       <View>
         <MenuBar />
-        <BottomMenu
-          navigate={navigate}
+        <TopMenu
           style={{
             position: 'absolute', right: 90, top: 60, bottom: 0, justifyContent: 'center', alignItems: 'center',
           }}
@@ -150,7 +108,7 @@ class People extends React.Component {
               <Participant
                 profileAvatar={part.PROFILE_AVATAR}
                 person={part.USER_NAME}
-                onClick={navigate}
+                onClick={this.onClick({ idUser: part.ID_USER, person: `${part.USER_FIRSTNAME} ${part.USER_NAME}` })}
               />
             )))}
         </ScrollView>

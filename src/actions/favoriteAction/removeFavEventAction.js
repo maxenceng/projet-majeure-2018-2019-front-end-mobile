@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-import axios from '../helpers/axios';
-import { axiosHeaders, getAsyncStorageItem } from '../helpers/common';
+import axios from '../../helpers/axios';
+import { axiosHeaders, getAsyncStorageItem } from '../../helpers/common';
 
 export const REMOVE_FAVORITE_REQUEST = 'REMOVE_FAVORITE_EVENT_REQUEST';
 export const REMOVE_FAVORITE_SUCCESS = 'REMOVE_FAVORITE_EVENT_SUCCESS';

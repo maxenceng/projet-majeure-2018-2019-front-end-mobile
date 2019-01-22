@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-import axios from '../helpers/axios';
-import { axiosHeaders, getAsyncStorageItem } from '../helpers/common';
+import axios from '../../helpers/axios';
+import { axiosHeaders, getAsyncStorageItem } from '../../helpers/common';
 
 export const ADD_FAVORITE_REQUEST = 'ADD_FAVORITE_REQUEST';
 export const ADD_FAVORITE_SUCCESS = 'ADD_FAVORITE_SUCCESS';

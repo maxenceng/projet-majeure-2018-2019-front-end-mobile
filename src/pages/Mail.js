@@ -53,11 +53,9 @@ class Mail extends React.Component {
   }
 
   render() {
-    const { navigation: { navigate } } = this.props;
     return (
       <ConversationList
         setActive={this.setActive}
-        navigate={navigate}
         conversations={this.conversations}
       />
     );

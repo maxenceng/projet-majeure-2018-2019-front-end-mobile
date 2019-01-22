@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  View, Text, StyleSheet,
-}
-  from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Button from '../components/Button';
 import navigationOptions from '../utils/navigationOptions';
 import { COLOR_TITLE } from '../helpers/common';
@@ -55,7 +52,7 @@ export default class Home extends React.Component {
             <Button style={styles.button} onPress={() => navigate('SignIn')}>
               Sign In
             </Button>
-            <Button style={styles.button} onPress={() => navigate('SignIn')}>
+            <Button style={styles.button} onPress={() => navigate('SignUp')}>
               Sign Up
             </Button>
           </View>

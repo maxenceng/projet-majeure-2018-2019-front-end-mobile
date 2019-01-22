@@ -1,6 +1,6 @@
-import { ADD_FAVORITE_REQUEST, ADD_FAVORITE_SUCCESS, ADD_FAVORITE_ERROR } from '../actions/addFavEventAction';
-import { REMOVE_FAVORITE_REQUEST, REMOVE_FAVORITE_SUCCESS, REMOVE_FAVORITE_ERROR } from '../actions/removeFavEventAction';
-import { GET_FAVORITE_STATUS_REQUEST, GET_FAVORITE_STATUS_SUCCESS, GET_FAVORITE_STATUS_ERROR } from '../actions/getStatusFavoriteAction';
+import { ADD_FAVORITE_REQUEST, ADD_FAVORITE_SUCCESS, ADD_FAVORITE_ERROR } from '../actions/favoriteAction/addFavEventAction';
+import { REMOVE_FAVORITE_REQUEST, REMOVE_FAVORITE_SUCCESS, REMOVE_FAVORITE_ERROR } from '../actions/favoriteAction/removeFavEventAction';
+import { GET_FAVORITE_STATUS_REQUEST, GET_FAVORITE_STATUS_SUCCESS, GET_FAVORITE_STATUS_ERROR } from '../actions/favoriteAction/getStatusFavoriteAction';
 
 const defaultState = {
   err: null,

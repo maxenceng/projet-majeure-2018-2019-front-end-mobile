@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -6,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import t from 'tcomb-form-native'; // 0.6.9
+import t from 'tcomb-form-native';
 import navigationOptions from '../utils/navigationOptions';
 import actions, { actionPropTypes } from '../actions';
 import Button from '../components/Button';
@@ -54,7 +55,24 @@ class SignUp extends React.Component {
 
   static propTypes = {
     actions: actionPropTypes.isRequired,
+    auth: PropTypes.shape({
+      idUser: PropTypes.string.isRequired,
+      message: PropTypes.string.isRequired,
+      token: PropTypes.string.isRequired,
+    }),
   };
+
+  static defaultProps = {
+    auth: {},
+  };
+
+  componentWillReceiveProps(newProps) {
+    const { actions: { navigationAction } } = this.props;
+    const { auth } = newProps;
+    if (auth.message === 'signUp' && auth.token) {
+      navigationAction('CreateProfile');
+    }
+  }
 
   onSubmit = () => {
     const value = this.form.getValue();
@@ -66,7 +84,7 @@ class SignUp extends React.Component {
       password,
       passwordVerif,
     } = value;
-    const { actions: { registerAction }, navigation: { navigate } } = this.props;
+    const { actions: { registerAction } } = this.props;
     registerAction({
       name,
       firstname,
@@ -74,7 +92,6 @@ class SignUp extends React.Component {
       password,
       passwordVerif,
     });
-    navigate('CreateProfile');
   }
 
   formOptions = {
@@ -121,14 +138,6 @@ class SignUp extends React.Component {
   }
 }
 
-export default connect(null, actions)(SignUp);
+const mapStateToProps = ({ auth: { data: auth } }) => ({ auth });
 
-// tu stash tu pull tu pop et tu merge
-// tu commit tu push ou bien c'est la demer
-// Tu fais le tout sur la branche dev
-// sur le trello tu marques c'que t'as fait
-
-
-// et tu supprimes eslint de mes couilles
-// et tu le dis surout pas à jacqouille
-// si tu galère t'appelle le prof maxence
+export default connect(mapStateToProps, actions)(SignUp);

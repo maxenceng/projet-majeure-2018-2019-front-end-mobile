@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   View,
@@ -14,11 +15,7 @@ import actions, { actionPropTypes } from '../actions';
 import imageprofile from '../images/profile-pic.png';
 import Button from '../components/Button';
 import { getAsyncStorageItem } from '../helpers/common';
-// import Layout from './Layout';
 
-// const Form = t.form.Form;
-
-/* eslint-disable */
 const { Form } = t.form;
 
 const User = t.struct({
@@ -69,6 +66,13 @@ class CreateProfile extends React.Component {
 
   static propTypes = {
     actions: actionPropTypes.isRequired,
+    profile: PropTypes.shape({
+      PROFILE_AVATAR: PropTypes.string.isRequired,
+      PROFILE_DESC: PropTypes.string.isRequired,
+      TAG_TEXT: PropTypes.string.isRequired,
+      USER_FIRSTNAME: PropTypes.string.isRequired,
+      USER_NAME: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -78,7 +82,7 @@ class CreateProfile extends React.Component {
       firstname: '',
       name: '',
       tags: '',
-    }
+    },
   };
 
   componentWillMount() {
@@ -158,6 +162,7 @@ class CreateProfile extends React.Component {
     const {
       USER_FIRSTNAME,
       USER_NAME,
+      PROFILE_AVATAR,
     } = this.getProfile(this.props);
     const { value } = this.state;
     return (
@@ -166,10 +171,12 @@ class CreateProfile extends React.Component {
           <View>
             <Text style={styles.title}>{USER_FIRSTNAME} {USER_NAME}</Text>
           </View>
-          <Image
-            style={styles.image}
-            source={imageprofile}
-          />
+          <View style={{ alignItems: 'center' }}>
+            <Image
+              style={styles.image}
+              source={PROFILE_AVATAR || imageprofile}
+            />
+          </View>
           <View>
             <Form
               ref={(c) => { this.form = c; }}

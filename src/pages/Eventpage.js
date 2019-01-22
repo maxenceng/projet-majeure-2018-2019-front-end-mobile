@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import navigationOptions from '../utils/navigationOptions';
-import MenuBar from '../components/MenuBar';
+import MenuBar from '../containers/MenuBar';
 import { COLOR_TERCIARY, COLOR_SECONDARY } from '../helpers/common';
 
 const styles = StyleSheet.create({

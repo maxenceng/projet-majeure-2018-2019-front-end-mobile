@@ -4,7 +4,7 @@ import {
 }
   from 'react-native';
 import navigationOptions from '../utils/navigationOptions';
-import MenuBar from '../components/MenuBar';
+import MenuBar from '../containers/MenuBar';
 
 // import Layout from './Layout';
 
@@ -95,7 +95,6 @@ export default class EventsForMe extends React.Component {
     return (
       <View>
         <MenuBar
-          navigate={navigate}
           style={{
             position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
           }}

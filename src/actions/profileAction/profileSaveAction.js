@@ -19,7 +19,6 @@ export default ({
   dispatch(profileRequest());
   const idUser = await getAsyncStorageItem('idUser');
   const tagsArray = TAG_TEXT.split(' ');
-  console.log(idUser, tagsArray);
   return axios.post('updateProfile', {
     idUser,
     tagsArray,

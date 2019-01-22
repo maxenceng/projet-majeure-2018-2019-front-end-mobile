@@ -4,10 +4,10 @@ import {
   View, TouchableHighlight, Text,
 }
   from 'react-native';
-import actions, { actionPropTypes } from '../actions';
+import actions, { actionPropTypes } from '../actions/index';
 
 
-const BottomMenu = ({ actions: { navigationAction } }) => (
+const TopMenu = ({ actions: { navigationAction } }) => (
   <View style={{
     backgroundColor: 'white',
     flex: 1,
@@ -36,8 +36,8 @@ const BottomMenu = ({ actions: { navigationAction } }) => (
   </View>
 );
 
-BottomMenu.propTypes = {
+TopMenu.propTypes = {
   actions: actionPropTypes.isRequired,
 };
 
-export default connect(null, actions)(BottomMenu);
+export default connect(null, actions)(TopMenu);
