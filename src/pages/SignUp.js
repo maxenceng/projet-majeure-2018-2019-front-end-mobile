@@ -56,46 +56,6 @@ class SignUp extends React.Component {
     actions: actionPropTypes.isRequired,
   };
 
-  googleLogin = (event) => {
-    console.log(event);
-    const { actions: { openIdLoginAction } } = this.props;
-    const {
-      email,
-      givenName,
-      googleId,
-      familyName,
-    } = event.profileObj;
-    openIdLoginAction({
-      email,
-      name: familyName,
-      firstname: givenName,
-      password: googleId,
-      passwordVerif: googleId,
-    });
-  };
-
-
-  facebookLogin = (event) => {
-    console.log(event);
-    const { actions: { openIdLoginAction } } = this.props;
-    const {
-      email,
-      name,
-      id,
-    } = event;
-    openIdLoginAction({
-      email,
-      name: name.split(' ')[1],
-      firstname: name.split(' ')[0],
-      password: id,
-      passwordVerif: id,
-    });
-  };
-
-  failGoogle = (err) => {
-    console.log(err);
-  }
-
   onSubmit = () => {
     const value = this.form.getValue();
     if (!value) return;
