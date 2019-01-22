@@ -15,7 +15,7 @@ export default () => async (dispatch) => {
   const idUser = await getAsyncStorageItem.getItem('idUser');
   return axios.get(
     `relatedProfileEvents?idUser=${idUser}`,
-    axiosHeaders(),
+    await axiosHeaders(),
   )
     .then(res => dispatch(eventsForMeSuccess(res)))
     .catch(err => dispatch(eventsForMeError(getErrorMessage(err))));

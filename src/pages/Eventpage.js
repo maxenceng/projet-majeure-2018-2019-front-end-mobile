@@ -1,76 +1,27 @@
 import React from 'react';
-import {
-  View, StyleSheet, Text, TouchableHighlight,
-}
-  from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
 import navigationOptions from '../utils/navigationOptions';
 import MenuBar from '../components/MenuBar';
-
-// import Layout from './Layout';
-
-// const Form = t.form.Form;
+import { COLOR_TERCIARY, COLOR_SECONDARY } from '../helpers/common';
 
 const styles = StyleSheet.create({
-  title: {
-    marginRight: 20,
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'white',
+  container: {
+    height: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  titleleft: {
-    fontSize: 20,
-    color: 'white',
+  content: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    height: '70%',
+    width: '70%',
   },
-  event1: {
-    height: 70,
-    fontSize: 30,
-    color: 'white',
-    backgroundColor: 'orange',
-    textAlign: 'center',
-    // flex: 1,
+  card: {
+    backgroundColor: COLOR_TERCIARY,
   },
-  event1content: {
-    height: 50,
-    fontSize: 15,
-    color: 'white',
-    backgroundColor: 'orange',
-    textAlign: 'center',
-    // flex: 1,
-  },
-  event2: {
-    height: 70,
-    marginTop: 20,
-    fontSize: 30,
-    color: 'white',
-    backgroundColor: 'orange',
-    textAlign: 'center',
-    // flex: 2,
-  },
-  event2content: {
-    height: 50,
-    fontSize: 15,
-    color: 'white',
-    backgroundColor: 'orange',
-    textAlign: 'center',
-    // flex: 2,
-  },
-  event3: {
-    height: 70,
-    marginTop: 20,
-    fontSize: 30,
-    color: 'white',
-    backgroundColor: 'orange',
-    textAlign: 'center',
-    // flex: 3,
-  },
-  event3content: {
-    height: 50,
-    fontSize: 15,
-    color: 'white',
-    backgroundColor: 'orange',
-    textAlign: 'center',
-    // flex: 3,
+  text: {
+    color: COLOR_SECONDARY,
   },
 });
 
@@ -81,61 +32,22 @@ export default class Eventpage extends React.Component {
     const { navigation: { navigate } } = this.props;
     return (
       <View>
-        <MenuBar
-          navigate={navigate}
-        />
-        <View style={{
-          position: 'absolute', top: 100, left: 25, width: 300,
-        }}
-        >
-          <TouchableHighlight
-            onPress={() => navigate('AllEvents')}
-          >
-            <Text style={styles.event1}>
-
-              All Events
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('AllEvents')}
-          >
-            <Text style={styles.event1content}>
-
-              All the good stuff, everywhere
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('EventsForMe')}
-          >
-            <Text style={styles.event2}>
-
-              Events For me
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('EventsForMe')}
-          >
-            <Text style={styles.event2content}>
-
-              Want something specific ?
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('RandomEvents')}
-          >
-            <Text style={styles.event3}>
-
-              Random Event
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate('RandomEvents')}
-          >
-            <Text style={styles.event3content}>
-
-              Feeling Adventurous
-            </Text>
-          </TouchableHighlight>
+        <MenuBar />
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <Card style={styles.card} onPress={() => navigate('AllEvents')}>
+              <Card.Content>
+                <Title style={styles.text}>All Events</Title>
+                <Paragraph style={styles.text}>All the good stuff, everywhere</Paragraph>
+              </Card.Content>
+            </Card>
+            <Card style={styles.card} onPress={() => navigate('EventsForMe')}>
+              <Card.Content>
+                <Title style={styles.text}>Events For me</Title>
+                <Paragraph style={styles.text}>Want something specific ?</Paragraph>
+              </Card.Content>
+            </Card>
+          </View>
         </View>
       </View>
     );

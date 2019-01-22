@@ -19,6 +19,7 @@ export default ({
   dispatch(profileRequest());
   const idUser = await getAsyncStorageItem('idUser');
   const tagsArray = TAG_TEXT.split(' ');
+  console.log(idUser, tagsArray);
   return axios.post('updateProfile', {
     idUser,
     tagsArray,
@@ -26,7 +27,17 @@ export default ({
     linkPicture: PROFILE_AVATAR,
     firstname: USER_FIRSTNAME,
     lastname: USER_NAME,
-  }, axiosHeaders())
-    .then(res => dispatch(profileSaving(res)))
+  }, await axiosHeaders())
+    .then(() => dispatch(profileSaving({
+      data: {
+        profile: [{
+          PROFILE_AVATAR,
+          PROFILE_DESC,
+          TAG_TEXT,
+          USER_FIRSTNAME,
+          USER_NAME,
+        }],
+      },
+    })))
     .catch(err => dispatch(profileError(err)));
 };

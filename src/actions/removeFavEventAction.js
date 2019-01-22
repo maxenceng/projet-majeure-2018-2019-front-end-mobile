@@ -13,7 +13,7 @@ export const removeFavoriteError = createAction(REMOVE_FAVORITE_ERROR);
 export default idEvent => async (dispatch) => {
   dispatch(removeFavoriteRequest());
   const idUser = await getAsyncStorageItem('idUser');
-  return axios.get(`removeFavorite?idUser=${idUser}&idEvent=${idEvent}`, axiosHeaders())
+  return axios.get(`removeFavorite?idUser=${idUser}&idEvent=${idEvent}`, await axiosHeaders())
     .then(res => dispatch(removeFavoriteSuccess(res)))
     .catch(err => dispatch(removeFavoriteError(err)));
 };

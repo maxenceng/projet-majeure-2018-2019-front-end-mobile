@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { getAsyncStorageItem } from '../helpers/common';
+import { axiosHeaders, getAsyncStorageItem } from '../helpers/common';
 import axios from '../helpers/axios';
 
 export const GET_PARTICIPATION_STATUS_REQUEST = 'GET_PARTICIPATION_STATUS_REQUEST';
@@ -13,7 +13,7 @@ export const getParticipationStatustError = createAction(GET_PARTICIPATION_STATU
 export default idEvent => async (dispatch) => {
   dispatch(getParticipationStatusRequest());
   const idUser = await getAsyncStorageItem('idUser');
-  return axios.get(`userParticipateEvent?idUser=${idUser}&idEvent=${idEvent}`)
+  return axios.get(`userParticipateEvent?idUser=${idUser}&idEvent=${idEvent}`, await axiosHeaders())
     .then(res => dispatch(getParticipationStatusSuccess(res)))
     .catch(err => dispatch(getParticipationStatustError(err)));
 };

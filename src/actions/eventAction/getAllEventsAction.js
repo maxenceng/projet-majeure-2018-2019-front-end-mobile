@@ -19,7 +19,7 @@ export default ({
   const idUser = await getAsyncStorageItem('idUser');
   return axios.get(
     `allEvents?idUser=${idUser}&date=${date}&location=${loc}`,
-    axiosHeaders(),
+    await axiosHeaders(),
   )
     .then(res => dispatch(allEventsSuccess(res)))
     .catch(err => dispatch(allEventsError(getErrorMessage(err))));

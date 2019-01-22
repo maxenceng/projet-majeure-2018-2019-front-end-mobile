@@ -6,7 +6,7 @@ export const CONNECTION_STATUS = 'CONNECTION_STATUS';
 const setConnectionStatus = createAction(CONNECTION_STATUS);
 
 export default status => (dispatch) => {
-  if (process.browser && !status) {
+  if (!status) {
     AsyncStorage.removeItem('userToken');
     AsyncStorage.removeItem('idUser');
   }

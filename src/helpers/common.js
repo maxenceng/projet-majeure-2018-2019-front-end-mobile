@@ -44,3 +44,11 @@ const date = timestamp => new Date(parseInt(timestamp, 10));
 export const getDay = timestamp => date(timestamp).getDate();
 
 export const getMonth = timestamp => monthArray[date(timestamp).getMonth()];
+
+export const COLOR_PRIMARY = '#154a6d';
+export const COLOR_TITLE = '#072c46';
+export const COLOR_SECONDARY = '#ffffd7';
+export const COLOR_SEARCH = '#5c5c5c';
+export const COLOR_BG_PRIMARY = '#ffffff';
+export const COLOR_TERCIARY = '#cf3f26';
+export const COLOR_HOVER = '#8a5300';

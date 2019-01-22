@@ -1,20 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  View, Button,
+  View,
+  StyleSheet,
 }
   from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import navigationOptions from '../utils/navigationOptions';
 import MenuBar from '../components/MenuBar';
 import BottomMenu from '../components/BottomMenu';
-import EventsDescription from '../components/EventsDescription';
 import actions, { actionPropTypes } from '../actions';
+import { COLOR_SECONDARY, COLOR_TERCIARY } from '../helpers/common';
+import Button from '../components/Button';
 
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  content: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    height: '85%',
+    width: '100%',
+  },
+  card: {
+    backgroundColor: COLOR_TERCIARY,
+    margin: 10,
+  },
+  text: {
+    color: COLOR_SECONDARY,
+    justifyContent: 'space-between',
+  },
+  buttons: {
+    alignItems: 'center',
+  },
+  button: {
+    margin: 10,
+  },
+});
 
 class EventDetails extends React.Component {
   static navigationOptions = navigationOptions('EventDetails');
-  // console.log(this.props.navigation.state.params.event.ID_EVENT);
+  // console.log(this.props.navigation.state.params.curEvent.ID_EVENT);
 
   static propTypes = {
     actions: actionPropTypes.isRequired,
@@ -31,7 +61,7 @@ class EventDetails extends React.Component {
       LOC_LONGITUDE: PropTypes.string.isRequired,
       MEDIA_CONTENT: PropTypes.string.isRequired,
     })),
-    // participation: PropTypes.string.isRequired,
+    participate: PropTypes.string.isRequired,
   };
 
   state = {
@@ -82,46 +112,43 @@ class EventDetails extends React.Component {
   render() {
     const {
       navigation: { navigate },
+      participate,
     } = this.props;
     const { curEvent } = this.state;
     return (
       <View>
-        <MenuBar
-          navigate={navigate}
-          style={{
-            position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
-          }}
-        />
+        <MenuBar />
         <BottomMenu
           navigate={navigate}
           style={{
             position: 'absolute', right: 90, top: 60, bottom: 0, justifyContent: 'center', alignItems: 'center',
           }}
         />
-        <EventsDescription
-          imageEvent={curEvent.MEDIA_CONTENT}
-          titleEvent={curEvent.EVENT_NAME}
-          dayDate={this.getDate(curEvent)}
-          placeofevent={curEvent.LOC_DISTRICT}
-          description={curEvent.EVENT_DESC}
-        />
-        <View style={[{
-          width: 200, marginLeft: 25, marginTop: 400,
-        }]}
-        >
-          <Button
-            title="Participate"
-            onPress={this.onClickParticipate}
-          />
-        </View>
-        <View style={[{
-          width: 200, marginLeft: 75,
-        }]}
-        >
-          <Button
-            title="Unparticipate"
-            onPress={this.onClickUnParticipate}
-          />
+        <Card style={styles.card}>
+          <Card.Content>
+            <Title style={styles.text}>{curEvent.EVENT_NAME}</Title>
+            <Paragraph style={styles.text}>
+              {this.getDate(curEvent)}
+            </Paragraph>
+            <Paragraph style={styles.text}>
+              {curEvent.LOC_DISTRICT}
+            </Paragraph>
+            <Paragraph style={styles.text}>
+              {curEvent.EVENT_DESC}
+            </Paragraph>
+          </Card.Content>
+          <Card.Cover source={{ uri: curEvent.MEDIA_CONTENT }} />
+        </Card>
+        <View style={styles.buttons}>
+          {participate !== 'participate' ? (
+            <Button style={styles.button} onPress={this.onClickParticipate}>
+              Participate
+            </Button>
+          ) : (
+            <Button style={styles.button} onPress={this.onClickUnParticipate}>
+              Unparticipate
+            </Button>
+          )}
         </View>
       </View>
     );
@@ -132,12 +159,12 @@ const mapStateToProps = ({
   idEvent,
   event: { data: { events } },
   participant,
-  participation,
+  participate: { data: participate },
 }) => ({
   idEvent,
   events,
   participant: participant.data,
-  participation,
+  participate,
 });
 
 export default connect(mapStateToProps, actions)(EventDetails);

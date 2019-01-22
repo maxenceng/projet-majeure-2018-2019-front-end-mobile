@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   View, TouchableHighlight, Text,
 }
   from 'react-native';
+import actions, { actionPropTypes } from '../actions';
 
 
-const BottomMenu = ({ navigate }) => (
+const BottomMenu = ({ actions: { navigationAction } }) => (
   <View style={{
     backgroundColor: 'white',
     flex: 1,
@@ -17,7 +18,7 @@ const BottomMenu = ({ navigate }) => (
   }}
   >
     <TouchableHighlight
-      onPress={() => navigate('EventDetails')}
+      onPress={() => navigationAction('EventDetails')}
       style={{
         position: 'absolute', left: 0, top: 0, bottom: 0, width: 180, borderRightColor: 'black', borderRightWidth: 0.5, padding: 20, borderBottomColor: 'black', borderBottomWidth: 0.5,
       }}
@@ -25,7 +26,7 @@ const BottomMenu = ({ navigate }) => (
       <Text>EventsDescription</Text>
     </TouchableHighlight>
     <TouchableHighlight
-      onPress={() => navigate('People')}
+      onPress={() => navigationAction('People')}
       style={{
         position: 'absolute', right: 1, top: 0, bottom: 0, width: 180, padding: 20, borderBottomColor: 'black', borderBottomWidth: 0.5,
       }}
@@ -36,7 +37,7 @@ const BottomMenu = ({ navigate }) => (
 );
 
 BottomMenu.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  actions: actionPropTypes.isRequired,
 };
 
-export default BottomMenu;
+export default connect(null, actions)(BottomMenu);
