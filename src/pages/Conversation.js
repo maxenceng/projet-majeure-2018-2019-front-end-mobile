@@ -44,7 +44,6 @@ class Conversation extends React.Component {
       }
     });
     this.socket.on('message', (result) => {
-      console.log(result);
       const { actions: { addMessageAction }, currentConv } = this.props;
       if (!result.err) {
         addMessageAction({
@@ -73,11 +72,11 @@ class Conversation extends React.Component {
 
 
   render() {
-    const { navigation: { navigate }, messages, currentConv: { idUser } } = this.props;
+    const { messages, currentConv: { idUser, person } } = this.props;
     return (
       <ConversationComponent
         messages={messages}
-        navigate={navigate}
+        person={person}
         currentIdUser={idUser}
         sendMessage={this.sendMessage}
       />

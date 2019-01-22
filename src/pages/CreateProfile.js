@@ -1,13 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  View, Button, StyleSheet, Text, Image, ScrollView,
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  KeyboardAvoidingView,
 }
   from 'react-native';
-import t from 'tcomb-form-native'; // 0.6.9
+import t from 'tcomb-form-native';
 import navigationOptions from '../utils/navigationOptions';
 import actions, { actionPropTypes } from '../actions';
 import imageprofile from '../images/profile-pic.png';
+import Button from '../components/Button';
+import { getAsyncStorageItem } from '../helpers/common';
 // import Layout from './Layout';
 
 // const Form = t.form.Form;
@@ -17,36 +23,11 @@ const { Form } = t.form;
 
 const User = t.struct({
   avatar: t.String,
-  Description: t.String,
-  Firstname: t.String,
-  Username: t.String,
-  Tags: t.String,
+  description: t.String,
+  firstname: t.String,
+  name: t.String,
+  tags: t.String,
 });
-
-const formStyles = {
-  ...Form.stylesheet,
-  formGroup: {
-    normal: {
-      marginBottom: 10,
-      width: 225,
-    },
-  },
-  controlLabel: {
-    normal: {
-      color: 'blue',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600',
-    },
-    // the style applied when a validation error occours
-    error: {
-      color: 'red',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600',
-    },
-  },
-};
 
 const options = {
   fields: {
@@ -60,35 +41,26 @@ const options = {
       label: 'Agree to Terms',
     },
   },
-  stylesheet: formStyles,
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: 250,
+    height: '100%',
     justifyContent: 'center',
-    marginTop: 50,
-    paddingLeft: 60,
-    backgroundColor: '#ffffff',
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
+  content: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    padding: 20,
+    height: '90%',
   },
-  title: {
-    marginTop: 30,
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-  profileimage: {
-    marginLeft: 140,
+  image: {
     width: 80,
     height: 80,
+  },
+  buttons: {
+    alignItems: 'center',
+    margin: 10,
   },
 });
 
@@ -98,72 +70,39 @@ class CreateProfile extends React.Component {
   static propTypes = {
     actions: actionPropTypes.isRequired,
   };
-  /* eslint-disable react/no-unused-state */
+
+  state = {
+    value: {
+      avatar: '',
+      description: '',
+      firstname: '',
+      name: '',
+      tags: '',
+    }
+  };
 
   componentWillMount() {
-    const {
-      PROFILE_AVATAR,
-      PROFILE_DESC,
-      TAG_TEXT,
-      USER_FIRSTNAME,
-      USER_NAME,
-    } = this.getProfile;
-    this.setState({
-      PROFILE_AVATAR,
-      PROFILE_DESC,
-      TAG_TEXT,
-      USER_FIRSTNAME,
-      USER_NAME,
-    });
+    const { actions: { getProfileAction } } = this.props;
+    if (getAsyncStorageItem('userToken') && getAsyncStorageItem('idUser')) {
+      getProfileAction();
+    }
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.getProfile(this.props).PROFILE_AVATAR === ''
-   && this.getProfile(newProps).PROFILE_AVATAR !== '') {
-      const {
-        PROFILE_AVATAR,
-      } = this.getProfile(newProps);
+    const { profile } = this.props;
+    const { profile: newProfile } = newProps;
+    if (!profile.profile && newProfile.profile) {
       this.setState({
-        PROFILE_AVATAR,
-      });
-    }
-    if (this.getProfile(this.props).PROFILE_DESC === ''
-    && this.getProfile(newProps).PROFILE_DESC !== '') {
-      const {
-        PROFILE_DESC,
-      } = this.getProfile(newProps);
-      this.setState({
-        PROFILE_DESC,
-      });
-    }
-    if (this.getProfile(this.props).TAG_TEXT === ''
-    && this.getProfile(newProps).TAG_TEXT !== '') {
-      const {
-        TAG_TEXT,
-      } = this.getProfile(newProps);
-      this.setState({
-        TAG_TEXT,
-      });
-    }
-    if (this.getProfile(this.props).USER_FIRSTNAME === ''
-  && this.getProfile(newProps).USER_FIRSTNAME !== '') {
-      const {
-        USER_FIRSTNAME,
-      } = this.getProfile(newProps);
-      this.setState({
-        USER_FIRSTNAME,
-      });
-    }
-    if (this.getProfile(this.props).USER_NAME === '' && this.getProfile(newProps).USER_NAME !== '') {
-      const {
-        USER_NAME,
-      } = this.getProfile(newProps);
-      this.setState({
-        USER_NAME,
+        value: {
+          avatar: newProfile.profile[0].PROFILE_AVATAR,
+          description: newProfile.profile[0].PROFILE_DESC,
+          firstname: newProfile.profile[0].USER_FIRSTNAME,
+          name: newProfile.profile[0].USER_NAME,
+          tags: newProfile.profile[0].TAG_TEXT,
+        },
       });
     }
   }
-  /* eslint-enable react/no-unused-state */
 
   getProfile = (props) => {
     const { profile: { profile } } = props;
@@ -195,52 +134,57 @@ class CreateProfile extends React.Component {
   onSubmit = (event) => {
     event.preventDefault();
     const { actions: { profileSaveAction }, navigation: { navigate } } = this.props;
+    const value = this.form.getValue();
+    if (!value) return;
     const {
       avatar,
-      Description,
-      Firstname,
-      Username,
-      Tags,
-    } = this.form.getValue();
-    console.log(Description);
-    console.log(Firstname);
-    console.log(Username);
-    console.log(Tags);
+      description,
+      firstname,
+      name,
+      tags,
+    } = value;
     profileSaveAction({
       PROFILE_AVATAR: avatar,
-      PROFILE_DESC: Description,
-      TAG_TEXT: Tags,
-      USER_FIRSTNAME: Firstname,
-      USER_NAME: Username,
+      PROFILE_DESC: description,
+      TAG_TEXT: tags,
+      USER_FIRSTNAME: firstname,
+      USER_NAME: name,
     });
     navigate('Profile');
   }
 
 
   render() {
+    const {
+      USER_FIRSTNAME,
+      USER_NAME,
+    } = this.getProfile(this.props);
+    const { value } = this.state;
     return (
-      <ScrollView>
-        <View>
-          <Text style={styles.title}>WeMe</Text>
-        </View>
-        <Image
-          style={styles.profileimage}
-          source={imageprofile}
-        />
-        <View style={styles.container}>
-          <Form
-            ref={(c) => { this.form = c; }}
-            type={User}
-            options={options}
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <View style={styles.content}>
+          <View>
+            <Text style={styles.title}>{USER_FIRSTNAME} {USER_NAME}</Text>
+          </View>
+          <Image
+            style={styles.image}
+            source={imageprofile}
           />
+          <View>
+            <Form
+              ref={(c) => { this.form = c; }}
+              type={User}
+              options={options}
+              value={value}
+            />
+          </View>
+          <View style={styles.buttons}>
+            <Button onPress={this.onSubmit}>
+              Save
+            </Button>
+          </View>
         </View>
-        <View style={[{ width: 100, marginLeft: 125 }]}>
-          <Button
-            title="Save"
-            onPress={this.onSubmit}
-          />
-        </View>
-      </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

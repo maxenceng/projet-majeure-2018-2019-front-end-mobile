@@ -131,15 +131,9 @@ class People extends React.Component {
       navigation: { navigate },
       participant,
     } = this.props;
-    console.log(participant);
     return (
       <View>
-        <MenuBar
-          navigate={navigate}
-          style={{
-            position: 'absolute', right: 90, top: 30, bottom: 0, justifyContent: 'center', alignItems: 'center',
-          }}
-        />
+        <MenuBar />
         <BottomMenu
           navigate={navigate}
           style={{
@@ -155,9 +149,8 @@ class People extends React.Component {
             idUser !== part.ID_USER && (
               <Participant
                 profileAvatar={part.PROFILE_AVATAR}
-                ab={part.USER_NAME}
-                ef={part.PROFILE_DESC}
-                navigate={navigate}
+                person={part.USER_NAME}
+                onClick={navigate}
               />
             )))}
         </ScrollView>

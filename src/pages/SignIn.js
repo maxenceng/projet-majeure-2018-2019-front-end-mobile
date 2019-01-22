@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, StyleSheet, Text,
+  View, StyleSheet, Text, KeyboardAvoidingView,
 } from 'react-native';
 import t from 'tcomb-form-native';
 import { connect } from 'react-redux';
@@ -75,7 +75,7 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.title}>WeMe</Text>
           <View style={styles.form}>
@@ -91,7 +91,7 @@ class SignIn extends React.Component {
             </View>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -13,7 +13,7 @@ export const conversationError = createAction(CONVERSATIONS_ERROR);
 export default () => async (dispatch) => {
   dispatch(conversationRequest());
   const idUser = await getAsyncStorageItem('idUser');
-  return axios.get(`userConv?idUser=${idUser}`, axiosHeaders())
+  return axios.get(`userConv?idUser=${idUser}`, await axiosHeaders())
     .then(res => dispatch(conversationSuccess(res)))
     .catch(err => dispatch(conversationError(getErrorMessage(err))));
 };

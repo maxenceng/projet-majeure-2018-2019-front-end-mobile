@@ -13,7 +13,7 @@ export const getUserEventError = createAction(GET_USER_EVENTS_ERROR);
 export default () => async (dispatch) => {
   dispatch(getUserEventRequest());
   const idUser = await getAsyncStorageItem('idUser');
-  return axios.get(`userEvents?idUser=${idUser}`, axiosHeaders())
+  return axios.get(`userEvents?idUser=${idUser}`, await axiosHeaders())
     .then(res => dispatch(getUserEventSuccess(res)))
     .catch(err => dispatch(getUserEventError(err)));
 };

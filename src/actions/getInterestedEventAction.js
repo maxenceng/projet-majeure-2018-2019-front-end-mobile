@@ -13,7 +13,7 @@ export const getInterestedError = createAction(GET_INTERESTED_EVENT_ERROR);
 export default ({ idEvent }) => async (dispatch) => {
   dispatch(getInterestedRequest());
   const idUser = await getAsyncStorageItem.getItem('idUser');
-  return axios.get(`usersInterestedEvent?idUser=${idUser}&idEvent=${idEvent}`, axiosHeaders())
+  return axios.get(`usersInterestedEvent?idUser=${idUser}&idEvent=${idEvent}`, await axiosHeaders())
     .then(res => dispatch(getInterestedSuccess(res)))
     .catch(err => dispatch(getInterestedError(err)));
 };

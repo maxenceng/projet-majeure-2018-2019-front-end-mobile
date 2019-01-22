@@ -13,7 +13,7 @@ export const addFavoriteEventError = createAction(ADD_FAVORITE_ERROR);
 export default idEvent => async (dispatch) => {
   dispatch(addFavoriteEventRequest());
   const idUser = await getAsyncStorageItem('idUser');
-  return axios.get(`favoriteUserEvent?idUser=${idUser}&idEvent=${idEvent}`, axiosHeaders())
+  return axios.get(`favoriteUserEvent?idUser=${idUser}&idEvent=${idEvent}`, await axiosHeaders())
     .then(res => dispatch(addFavoriteEventSuccess(res)))
     .catch(err => dispatch(addFavoriteEventError(err)));
 };

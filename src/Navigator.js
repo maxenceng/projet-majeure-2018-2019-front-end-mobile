@@ -44,7 +44,7 @@ export const Navigator = createStackNavigator({
   BottomMenu: { screen: BottomMenu },
   Test: { screen: Test },
 }, {
-  initialRouteName: 'Eventpage',
+  initialRouteName: 'Mail',
 });
 
 export const middleware = createReactNavigationReduxMiddleware(
