@@ -123,12 +123,3 @@ class SignUp extends React.Component {
 
 export default connect(null, actions)(SignUp);
 
-// tu stash tu pull tu pop et tu merge
-// tu commit tu push ou bien c'est la demer
-// Tu fais le tout sur la branche dev
-// sur le trello tu marques c'que t'as fait
-
-
-// et tu supprimes eslint de mes couilles
-// et tu le dis surout pas à jacqouille
-// si tu galère t'appelle le prof maxence
