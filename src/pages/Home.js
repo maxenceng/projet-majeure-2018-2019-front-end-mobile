@@ -1,47 +1,41 @@
 import React from 'react';
 import {
-  View, Text, Button, StyleSheet,
+  View, Text, StyleSheet,
 }
   from 'react-native';
+import Button from '../components/Button';
 import navigationOptions from '../utils/navigationOptions';
+import { COLOR_TITLE } from '../helpers/common';
 
 
 const styles = StyleSheet.create({
   container: {
+    height: '100%',
     justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
+  content: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    padding: 20,
+    height: '70%',
   },
   title: {
-    marginTop: 103,
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e',
+    color: COLOR_TITLE,
   },
   description: {
     marginTop: 10,
     fontSize: 10,
     textAlign: 'center',
-    color: '#34495e',
+    color: COLOR_TITLE,
   },
-  signIn: {
-    marginTop: 130,
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
+  buttons: {
+    alignItems: 'center',
   },
-  signUp: {
-    marginTop: 15,
-    fontSize: 20,
+  button: {
+    margin: 10,
   },
 });
 
@@ -52,24 +46,19 @@ export default class Home extends React.Component {
     const { navigation: { navigate } } = this.props;
     return (
       <View style={styles.container}>
-        <View>
-          <Text style={styles.title}>WeMe</Text>
-        </View>
-        <View>
-          <Text style={styles.description}>New Events, New Friends</Text>
-        </View>
-        <View style={styles.signIn}>
-          <Button
-            style={{ marginBottom: 60 }}
-            title="Sign In"
-            onPress={() => navigate('SignIn')}
-          />
-        </View>
-        <View style={styles.signUp}>
-          <Button
-            title="Sign Up"
-            onPress={() => navigate('SignUp')}
-          />
+        <View style={styles.content}>
+          <View>
+            <Text style={styles.title}>WeMe</Text>
+            <Text style={styles.description}>New Events, New Friends</Text>
+          </View>
+          <View style={styles.buttons}>
+            <Button style={styles.button} onPress={() => navigate('SignIn')}>
+              Sign In
+            </Button>
+            <Button style={styles.button} onPress={() => navigate('SignIn')}>
+              Sign Up
+            </Button>
+          </View>
         </View>
       </View>
     );

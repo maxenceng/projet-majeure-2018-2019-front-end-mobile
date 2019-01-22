@@ -27,6 +27,14 @@ export default ({
     firstname: USER_FIRSTNAME,
     lastname: USER_NAME,
   }, axiosHeaders())
-    .then(res => dispatch(profileSaving(res)))
+    .then(() => dispatch(profileSaving({
+      data: {
+        PROFILE_AVATAR,
+        PROFILE_DESC,
+        TAG_TEXT,
+        USER_FIRSTNAME,
+        USER_NAME,
+      },
+    })))
     .catch(err => dispatch(profileError(err)));
 };

@@ -6,10 +6,6 @@ import {
 import navigationOptions from '../utils/navigationOptions';
 import MenuBar from '../components/MenuBar';
 
-// import Layout from './Layout';
-
-// const Form = t.form.Form;
-
 const styles = StyleSheet.create({
   title: {
     marginRight: 20,
@@ -81,9 +77,7 @@ export default class Eventpage extends React.Component {
     const { navigation: { navigate } } = this.props;
     return (
       <View>
-        <MenuBar
-          navigate={navigate}
-        />
+        <MenuBar />
         <View style={{
           position: 'absolute', top: 100, left: 25, width: 300,
         }}
