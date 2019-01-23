@@ -22,6 +22,9 @@ import Mail from './pages/Mail';
 import Conversation from './pages/Conversation';
 import Interlocutor from './components/Interlocutor';
 
+// Avoid displaying warnings when doing a demo
+console.disableYellowBox = true;
+
 export const Navigator = createStackNavigator({
   Home: { screen: Home },
   SignIn: { screen: SignIn },
